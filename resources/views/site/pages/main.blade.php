@@ -17,6 +17,12 @@
             isRequiredPage : false,
             selectedPurpose : '{{ request()->get('type') }}',
             advertise: {},
+            purpose_lang:{
+                rent: '{{ __('rent') }}' ,
+                sell: '{{ __('sell') }}' ,
+                exchange: '{{ __('exchange') }}' ,
+                required_for_rent: '{{ __('required_for_rent') }}'
+            },
             areas: [],
             async fetchAreas(){
                 fetch('{{ asset('/api/v1/cities') }}')
@@ -37,14 +43,25 @@
                     },
                     body: JSON.stringify({
                         area_id: this.selectedCity > 0 ? [this.selectedCity] : null,
-                        service_category_id:this.selectedType,
+                        venue_type:this.selectedType,
                         isRequiredPage: this.isRequiredPage,
                         purpose: this.selectedPurpose
                     })
                 })
                 .then( response => response.json() )
                 .then( data => this.advertise = data.data );
-            }
+            },
+            isArabic(text) {
+                let pattern = /[\u0600-\u06FF\u0750-\u077F]/;
+                let result = pattern.test(text);
+                return result;
+            },
+            truncate(input , char) {
+                if (input.length > char) {
+                    return input.substring(0, char) + '...';
+                }
+                return input;
+            },
         }" x-init="fetchAreas();fetchTypes();search();">
         @isset($company)
             {{--    @include('site.sections.company-info')--}}

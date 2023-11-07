@@ -162,6 +162,7 @@ Route::group(['middleware'=>['auth','Admin'],'prefix'=>"admin",'namespace'=>"Pan
 Route::feeds();
 Route::get('/sitemap.xml', 'site\SiteMapController@index')->name('sitemap');
 Route::get('resources/uploads/images/thumb/{file}', 'site\MainController@thumbanail')->name('thumbanail');
+Route::redirect('resources/uploads/images/{file}', 'https://picsum.photos/200');
 Route::get('resources/thumb/{width?}x{height?}/resources/uploads/images/{file}', 'site\MainController@resizeAbleThumbnail')->name('resizeAbleThumbnail');
 
 
