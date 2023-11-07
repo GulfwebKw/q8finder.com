@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url('../../../../../fonts.googleapis.com/css29cc5.css?family=Noto+Kufi+Arabic:wght@300;400;600;700&amp;display=swap');
+@import url('https://fonts.googleapis.com/css29cc5.css?family=Noto+Kufi+Arabic:wght@300;400;600;700&amp;display=swap');
 
 .menu{margin:20px 15px 0 0; font-size: 20px;}
 
@@ -20,7 +20,7 @@
     width: 250px;
     font:18px 'Noto Kufi Arabic', sans-serif;
 	}
-	
+
 .side-menu-wrapper > ul{ /* css ul list style */
     list-style:none;
     padding:0;
@@ -40,18 +40,18 @@
     font-family: 'Noto Kufi Arabic', sans-serif;
     font-size: 15px;
 	}
-	
+
 .side-menu-wrapper > ul > li > a:hover, .side-menu-wrapper > ul > li > ul > li > a:hover{
 	background:#e1e1e1;
 	}
-	
+
 .side-menu-wrapper > ul > li > ul{
 	list-style:none;
     padding:0;
     margin:0;
     overflow-y: auto;
 	}
-	
+
 .side-menu-wrapper > ul > li > ul > li > a{
 	display: block;
     border-bottom: 1px solid #980012;
@@ -61,7 +61,7 @@
     transition: 0.3s;
     text-decoration: none;
 	}
-	
+
 .side-menu-wrapper > a.menu-close { /* close button */
     padding:10px 20px 20px 0;
     color: #fff;

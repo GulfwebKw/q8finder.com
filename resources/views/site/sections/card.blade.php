@@ -1,3 +1,6 @@
+
+
+
 @php
     $message = urlencode("السلام عليكم\nاذا ممكن ترسل تفاصيل هذا الإعلان في مستر عقار
                                 وشكرا\n" ). request()->getSchemeAndHttpHost() . '/'.app()->getLocale().'/advertising/';

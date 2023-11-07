@@ -1,5 +1,5 @@
 
-@import url('../../../../../fonts.googleapis.com/css29cc5.css?family=Noto+Kufi+Arabic:wght@300;400;600;700&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&display=swap');
 
 html body{
     margin: 0;
@@ -29,7 +29,7 @@ img{width: 100%; height: auto;}
 }
 
 .footer_social{
-    float:left; 
+    float:left;
     margin: 0 -35px 0 0;
 }
 .footer_social li{
@@ -127,7 +127,7 @@ small{font-size: 13px !important;}
 
 .featured{
     position: absolute;
-   background: #e64b6a; 
+   background: #e64b6a;
    top:25px;
    right: 15px;
    padding: 4px 12px;
@@ -195,7 +195,7 @@ footer{
     cursor: pointer;
 }
 
-select, input, textarea{            
+select, input, textarea{
     background: #fff;
     border-radius:4px;
     -webkit-border-radius:4px;
@@ -333,7 +333,7 @@ i{margin: 0 0 0 10px;}
 }
 
 
-/*Mobile Devices.*/		
+/*Mobile Devices.*/
 @media all and (max-width: 480px) and (min-width: 320px){
 .card_details{margin: 0 0 20px 0;}
 footer{text-align: center !important;}
