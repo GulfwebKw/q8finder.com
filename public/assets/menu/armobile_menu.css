@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url('../../../../../fonts.googleapis.com/css29cc5.css?family=Noto+Kufi+Arabic:wght@300;400;600;700&amp;display=swap');
+
+.menu{margin:20px 15px 0 0; font-size: 20px;}
+
+.slide-menu-open{color:#092b4c;}
+
+.side-menu-wrapper { /* style menu wrapper */
+    overflow: hidden;
+    background: rgba(29,35,47,.95);
+    padding:40px 0 0 0;
+    position: fixed; /* Fixed position */
+    top: 0;
+    right: -290px; /* Sidebar initial position. "right" for right positioned menu */
+    height: 100%;
+    z-index:999;
+    transition: 0.5s; /* CSS transition speed */
+    width: 250px;
+    font:18px 'Noto Kufi Arabic', sans-serif;
+	}
+	
+.side-menu-wrapper > ul{ /* css ul list style */
+    list-style:none;
+    padding:0;
+    margin:0 0 0 45px !important;
+    overflow-y: auto; /* enable scroll for menu items */
+    width:500px; /* this width will hide scroll bar */
+    height:95%;
+}
+.side-menu-wrapper > ul > li > a { /* links */
+    display: block;
+    border-bottom: 1px solid #363c48;
+    padding:15px 10px 15px 15px;
+    color: #fff !important;
+	background:#1d232f;
+    transition: 0.3s;
+    text-decoration: none;
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    font-size: 15px;
+	}
+	
+.side-menu-wrapper > ul > li > a:hover, .side-menu-wrapper > ul > li > ul > li > a:hover{
+	background:#e1e1e1;
+	}
+	
+.side-menu-wrapper > ul > li > ul{
+	list-style:none;
+    padding:0;
+    margin:0;
+    overflow-y: auto;
+	}
+	
+.side-menu-wrapper > ul > li > ul > li > a{
+	display: block;
+    border-bottom: 1px solid #980012;
+    padding:15px 10px 15px 15px;
+    color: #fff;
+	background:#ab0014;
+    transition: 0.3s;
+    text-decoration: none;
+	}
+	
+.side-menu-wrapper > a.menu-close { /* close button */
+    padding:10px 20px 20px 0;
+    color: #fff;
+    display: block;
+    margin: -30px 0 -10px -20px;
+    font-size: 40px;
+    text-decoration: none;
+	}
+
+.side-menu-overlay { /* overlay */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+}
