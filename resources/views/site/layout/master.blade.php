@@ -21,26 +21,8 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 	<meta name="description" content="{{$desc}}">
 	<meta name="keywords" content="{{$keywords}}">
 	@endif
+    <meta name="author" content="جي سوليوشنز - الكويت">
 
-	<link rel="canonical" href=”https://mr-aqar.com” />
-
-	<meta property="og:site_name" content="{{ config('app.name') }}">
-	<meta property="og:locale" content="{{ app()->getLocale() }}_GB" />
-	<meta property="og:title" content="@hasSection('title')@yield('title') | @endif{{ $title }}" />
-	<meta property="og:description" content="{{$desc}}" />
-	<meta property="og:image" itemprop="image"
-		content="{{ asset('images/main/logo_header_' . app()->getLocale() . '.jpg') }}">
-	<meta property="og:type" content="website" />
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-	<link rel="manifest" href="/favicon/site.webmanifest">
-	<link rel="shortcut icon" href="/favicon/favicon.ico">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-	<meta name=”robots” content=”noindex, follow” />
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Scripts -->
@@ -53,90 +35,56 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 	@yield('head')
 </head>
 
-<body class="mdc-theme--background" style="overflow-x: hidden">
-		<div class="spinner-wrapper" id="preloader">
-			<div class="spinner-container">
-				<div class="spinner-outer">
-					<div class="spinner">
-						<img src="{{asset('images/main/loading.gif')}}" alt="loading" style="width: 100%;">
-					</div>
-					{{-- <p class="spinner-text">{{ __('PageTitle') }}</p> --}}
-				</div>
-			</div>
-		</div>
-	{{-- can use: @extends('site.layout.master', ['header' => 'transparent']) for transparent(bg-image) header pages
-	--}}
+<body>
+
 
 	@include('site.layout.header')
 
-	@include('site.sections.fail-flash')
+    <a href="#" class="menu-close">
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav>
+                            <ul>
+                                <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'rent') class="active" @endif>
+                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'rent']) }}">{{__('rent')}}</a>
+                                </li>
+                                <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'sell') class="active" @endif>
+                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'sell']) }}">{{__('sell')}}</a>
+                                </li>
+                                <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'exchange') class="active" @endif>
+                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'exchange']) }}">{{__('exchange')}}</a>
+                                </li>
+                                <li style="border: none;" @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'commercial') class="active" @endif>
+                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'commercial']) }}">تجاري</a>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </nav>
 
-	@yield('content')
+                    </div>
+                </div>
+        </section>
+	    @include('site.sections.fail-flash')
+
+	    @yield('content')
+    </main>
+    </a>
 
 	@include('site.layout.footer')
 
-
-
-	{{-- <div class="modal" id="confirm-modal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">{{ __('confirmation') }}</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-				</div>
-				<div class="modal-footer">
-
-					<button type="submit" class="mdc-button mdc-button--raised mdc-ripple-upgraded yes">
-						<span class="mdc-button__ripple">
-						</span>
-						<span class="mdc-button__label">
-							{{ __('yes_title') }}
-						</span>
-					</button>
-					<button type="submit" class="mdc-button mdc-button--raised mdc-ripple-upgraded bg-danger" data-dismiss="modal">
-						<span class="mdc-button__ripple">
-						</span>
-						<span class="mdc-button__label">
-							{{ __('no_title') }}
-						</span>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div> --}}
 
 	@include('site.layout.js')
 
 
 	<script>
-		// function confirmModal(event,title, callback){
-		// 	event.stopPropagation();
-        //     $('#confirm-modal .modal-body').html(`<h2>${title}</h2>`)
-        //     $('#confirm-modal .yes').on('click', callback);
-        //     $('#confirm-modal').css('display', 'flex');
-        // }
-		// $('[data-dismiss="modal"]').on('click', function() {
-		// 	$(this).closest('.modal').hide();
-		// })
-		// $('[data-bs-toggle="modal"]').on('click', function() {
-		// 	let id = $(this).data('target') || $(this).data('bs-target');
-		// 	$(id).css('display', 'flex');
-		// })
+
 	</script>
 
 	@yield('finalScripts')
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WF5R2QK00B"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
 
-	gtag('config', 'G-WF5R2QK00B');
-
-</script>
 </body>
 
 </html>
