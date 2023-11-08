@@ -6,7 +6,6 @@
 /public/storage
 /public/images
 /storage/*.key
-/storage/framework
 /vendor
 .env
 .env.backup
@@ -16,7 +15,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .git
-/bootstrap/cache
 /.idea
 /.vagrant
 resources/views/website2/
