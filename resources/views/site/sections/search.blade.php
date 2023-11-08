@@ -22,7 +22,7 @@
                         </template>
                     </select>
                 </div>
-                <div class="col-3 col-lg-2 my_search"><button class="btn btn_lg" @click="advertise = [];page=1;search();">{{__('search')}}</button></div>
+                <div class="col-3 col-lg-2 my_search"><button class="btn btn_lg" @click="advertise = [];page=1;totalPage=1;totalAdvertise=0;search();">{{__('search')}}</button></div>
             </div>
         </div>
     </div>

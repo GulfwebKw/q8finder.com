@@ -14,6 +14,7 @@
 @section('content')
 
     <div x-data="{
+            totalAdvertise : 0,
             page : 1,
             totalPage : 1,
             selectedCity : null,
@@ -54,6 +55,7 @@
                 fetch('{{ asset('/api/v1/search-advertising') }}?page='+this.page, {
                     method: 'POST',
                     headers: {
+                        'X-localization': '{{ app()->getLocale() }}',
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
@@ -66,6 +68,7 @@
                 .then( response => response.json() )
                 .then( data => {
                     this.advertise = this.advertise.concat(data.data.data);
+                    this.totalAdvertise = data.data.total;
                     this.totalPage = data.data.last_page;
                  });
             },
@@ -102,7 +105,7 @@
                             <span x-text="selectedPurpose == 'rent' ? '{{ __('rent') }}' : ( selectedPurpose == 'sell' ? '{{ __('sell') }}' : ( selectedPurpose == 'exchange' ? '{{ __('exchange') }}' : '' ) )" ></span>
                             <span>{{ __('search_in') }}</span>
                             <span x-text="selectedCityObject ? selectedCityObject.name_{{ app()->getLocale() }} : '{{ __('search_kuwait') }}' "></span>
-                            <span> (</span><span x-text="advertise.total"></span><span> {{ __('ads_title') }})</span>
+                            <span> (</span><span x-text="totalAdvertise"></span><span> {{ __('ads_title') }})</span>
                         </small>
                     </div>
                 </div>
