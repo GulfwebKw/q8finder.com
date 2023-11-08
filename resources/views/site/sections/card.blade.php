@@ -1,4 +1,4 @@
-<template x-for="ad in advertise.data">
+<template x-for="ad in advertise">
     <div class="col-11 col-lg-3 mx-auto">
         <p class="text-center" x-text="ad.created_at"></p>
         <div class="featured" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>

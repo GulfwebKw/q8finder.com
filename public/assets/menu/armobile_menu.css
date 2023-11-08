@@ -1,8 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url('https://fonts.googleapis.com/css29cc5.css?family=Noto+Kufi+Arabic:wght@300;400;600;700&amp;display=swap');
-
 .menu{margin:20px 15px 0 0; font-size: 20px;}
 
 .slide-menu-open{color:#092b4c;}

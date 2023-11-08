@@ -33,6 +33,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
             ]) !!};
 	</script>
 	@yield('head')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body>
@@ -40,7 +41,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 
 	@include('site.layout.header')
 
-    <a href="#" class="menu-close">
+{{--    <a href="#" class="menu-close">--}}
     <main>
         <section>
             <div class="container">
@@ -71,7 +72,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 
 	    @yield('content')
     </main>
-    </a>
+{{--    </a>--}}
 
 	@include('site.layout.footer')
 

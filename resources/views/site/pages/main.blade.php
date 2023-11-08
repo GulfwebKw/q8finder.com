@@ -7,16 +7,22 @@
     @section('title', __('required_for_rent_page_title'))
 @endisset
 
+@section('head')
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+@endsection
+
 @section('content')
 
     <div x-data="{
+            page : 1,
+            totalPage : 1,
             selectedCity : null,
             selectedCityObject : null,
             selectedType : null,
             selectedTypeObject : null,
             isRequiredPage : false,
             selectedPurpose : '{{ request()->get('type') }}',
-            advertise: {},
+            advertise: [],
             purpose_lang:{
                 rent: '{{ __('rent') }}' ,
                 sell: '{{ __('sell') }}' ,
@@ -36,7 +42,16 @@
                 .then( data => this.types = data.data.type );
             },
             async search(){
-                fetch('{{ asset('/api/v1/search-advertising') }}', {
+                if( this.selectedPurpose == 'commercial' ){
+                    this.selectedPurpose = '';
+                    do {
+                        await  new Promise(resolve => setTimeout(resolve, 500));
+                    } while(this.types.length == 0);
+
+                    let obj = this.types.find(o => o.title_en.toLowerCase() == 'commercial');
+                    this.selectedType = obj.id;
+                }
+                fetch('{{ asset('/api/v1/search-advertising') }}?page='+this.page, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -49,7 +64,10 @@
                     })
                 })
                 .then( response => response.json() )
-                .then( data => this.advertise = data.data );
+                .then( data => {
+                    this.advertise = this.advertise.concat(data.data.data);
+                    this.totalPage = data.data.last_page;
+                 });
             },
             isArabic(text) {
                 let pattern = /[\u0600-\u06FF\u0750-\u077F]/;
@@ -98,6 +116,7 @@
                 </div>
             </div>
         </section>
+        <div x-intersect:enter="if (page < totalPage) { page++;search();}"></div>
     </div>
 
 @endsection
