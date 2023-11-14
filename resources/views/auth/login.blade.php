@@ -23,7 +23,7 @@
                             @csrf
                         <div class="mb-20">
                             <label><i class="fa fa-phone fa-lg"></i> {{__('phone_number_title')}}</label>
-                            <input type="text" class="input form-control  @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autofocus placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
+                            <input type="text" dir="ltr" class="input form-control  @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autofocus placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
                             @error('mobile')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -33,7 +33,7 @@
 
                         <div class="mb-20">
                             <label><i class="fa fa-lock fa-lg"></i> {{__('password')}}</label>
-                            <input type="password" name="password" required class="input form-control @error('password') is-invalid @enderror" placeholder="{{__('password')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('password')}}'">
+                            <input type="password" dir="ltr" name="password" required class="input form-control @error('password') is-invalid @enderror" placeholder="{{__('password')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('password')}}'">
                             @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}

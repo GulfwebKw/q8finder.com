@@ -1,20 +1,19 @@
 @extends('site.layout.master')
 @section('title' , __('sign_up_title'))
-
+@section('disableHeaderNavbar' , 'yes')
 @section('content')
+    <section class="mt-30">
+        <div class="container">
+            <div class="row">
+                <!-- Gallery -->
+                <div class="col-lg-3 mob_hide">&nbsp;</div>
 
-    <main>
-        <div class="px-3">
-            <div class="theme-container">
-                <div class="row center-xs middle-xs my-5">
-                    <div class="mdc-card p-3 p-relative mw-500px">
-                        <div class="column center-xs middle-xs text-center">
-                            <h1 class="uppercase">{{__('sign_up_title')}}</h1>
-                            <a href="{{ route('login',app()->getLocale()) }}" class="mdc-button mdc-ripple-surface mdc-ripple-surface--primary normal w-100">
-                                {{__('already_registered')}}
-                                {{__('sign_in')}}
-                            </a>
-                        </div>
+                <div class="col-12 col-lg-6">
+                    <div class="seach_container">
+                        <h3 class="text-center">{{__('sign_up_title')}}</h3>
+                        <p class="text-center"><a href="{{ route('login',app()->getLocale()) }}"> {{__('already_registered')}}
+                                {{__('sign_in')}} </a></p>
+                        <hr>
                         <form method="post" id="register-form" action="{{ route('register',app()->getLocale()) }}">
                             @csrf
                             @if ( old('codeValidation' , false ) )
@@ -25,120 +24,78 @@
                                 <input type="hidden" name="password" value="{{ old("password") }}">
                                 <input type="hidden" name="password_confirmation" value="{{ old("password_confirmation") }}">
                                 <input type="hidden" name="codeValidation" value="{{ old("codeValidation") }}">
-                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon w-100 mt-3 custom-field ">
-                                    <i class="material-icons mdc-text-field__icon text-muted">terminal</i>
-                                    <input id="code" type="number" placeholder="{{__('passcode')}}" class="mdc-text-field__input @error('code') is-invalid @enderror @if($errors->any()) is-invalid @endif" name="code" autofocus>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">{{__('passcode')}}</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
+
+                                <div class="mb-20">
+                                    <label><i class="fa fa-phone fa-lg"></i> {{__('passcode')}}</label>
+                                    <input id="code" dir="ltr" type="number" name="code" autofocus class="input form-control @error('code') is-invalid @enderror @if($errors->any()) is-invalid @endif" placeholder="{{__('passcode')}}" onblur="this.placeholder='{{__('passcode')}}'" onclick="this.placeholder=''">
+                                    @error('code')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
                                     </div>
+                                    @enderror
                                 </div>
-                                @error('code')
-                                <span class="invalid-feedback warn-color d-inline-block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                                 @if ($errors->any())
                                     @foreach ($errors->all() as $error)
-                                        <span class="invalid-feedback warn-color d-inline-block"><strong>{{$error}}</strong></span>
+                                        <div class="invalid-feedback"><strong>{{$error}}</strong></div>
                                     @endforeach
                                 @endif
-                                <div id="resendcode"  onclick="submitForm();"   class="mdc-button mdc-ripple-surface mdc-ripple-surface--primary normal w-100 mt-3" style="cursor: pointer;display: none;">
-                                    <i class="material-icons mdc-text-field__icon text-muted">refresh</i>
+                                <div id="resendcode"  onclick="submitForm();" class="btn btn-outline-info w-100 mt-3" style="cursor: pointer;display: none;">
                                     {{__('resend_code')}}
                                     <input type="checkbox" name="resend" id="resend" value="1" style="display: none;">
                                 </div>
 
-                                <div class="col-xs-12 w-100 py-3 text-center" style="min-width: 35vw;">
-                                    <button class="mdc-button mdc-button--raised" type="submit">
-                                        <span class="mdc-button__ripple"></span>
-                                        <span class="mdc-button__label">{{__('sign_up_title')}}</span>
-                                    </button>
+                                <div class="w-100 py-3 text-center" style="min-width: 35vw;">
+                                    <button class="btn btn_lg" type="submit">{{__('sign_up_title')}}</button>
                                 </div>
                             @else
-                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon w-100 mt-3 custom-field  @error('mobile') mdc-text-field--invalid @enderror">
-                                    <i class="material-icons mdc-text-field__icon text-muted">phone</i>
-                                    <input id="mobile" type="tel" placeholder="{{__('phone_number_title')}}" class="mdc-text-field__input" name="mobile" value="{{ old('mobile') }}" required autofocus>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">{{__('phone_number_title')}}</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
+                                <div class="mb-20">
+                                    <label><i class="fa fa-phone fa-lg"></i> {{__('phone_number_title')}}</label>
+                                    <input type="text" name="mobile" value="{{ old('mobile') }}" required dir="ltr" class="input form-control @error('mobile') is-invalid @enderror" placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
+                                    @error('mobile')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
                                     </div>
+                                    @enderror
                                 </div>
-                                @error('mobile')
-                                <span class="invalid-feedback warn-color d-inline-block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon w-100 mt-3 custom-field  @error('email') mdc-text-field--invalid @enderror">
-                                    <i class="material-icons mdc-text-field__icon text-muted">email</i>
-                                    <input id="email" type="email" placeholder="{{__('your_email')}}" class="mdc-text-field__input" name="email" value="{{ old('email') }}">
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">{{__('your_email')}}</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
+
+                                <div class="mb-20">
+                                    <label><i class="fa fa-envelope fa-lg"></i> {{__('your_email')}}</label>
+                                    <input type="email" name="email" value="{{ old('email') }}" required dir="ltr" class="input form-control @error('email') is-invalid @enderror" placeholder="{{__('your_email')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('your_email')}}'">
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
                                     </div>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                <span class="invalid-feedback warn-color d-inline-block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon mdc-text-field--with-trailing-icon w-100 custom-field mt-4 custom-field  @error('password') mdc-text-field--invalid @enderror">
-                                    <i class="material-icons mdc-text-field__icon text-muted">lock</i>
-                                    <i class="material-icons mdc-text-field__icon text-muted password-toggle" tabindex="1">visibility_off</i>
-                                    <input  name="password" id="password" type="password" placeholder="{{__('password')}}" class="mdc-text-field__input" type="password" required>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">{{__('password')}}</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
+
+                                <div class="mb-20">
+                                    <label><i class="fa fa-lock fa-lg"></i> {{__('password')}}</label>
+                                    <input name="password" id="password" type="password" required dir="ltr" class="input form-control @error('code') is-invalid @enderror" placeholder="{{__('password')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('password')}}'">
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
                                     </div>
+                                    @enderror
                                 </div>
-                                @error('password')
-                                <span class="invalid-feedback warn-color d-inline-block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon mdc-text-field--with-trailing-icon w-100 custom-field mt-4 custom-field @error('password') mdc-text-field--invalid @enderror">
-                                    <i class="material-icons mdc-text-field__icon text-muted">lock</i>
-                                    <i class="material-icons mdc-text-field__icon text-muted password-toggle" tabindex="1">visibility_off</i>
-                                    <input  name="password_confirmation" id="password_confirmation" type="password" placeholder="{{__('Confirm Password')}}" class="mdc-text-field__input" required>
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label class="mdc-floating-label">{{__('Confirm Password')}}</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
+
+                                <div class="mb-20">
+                                    <label><i class="fa fa-lock fa-lg"></i> {{__('Confirm Password')}}</label>
+                                    <input name="password_confirmation" id="password_confirmation"  dir="ltr" type="password" required class="input form-control @error('password_confirmation') is-invalid @enderror" placeholder="{{__('Confirm Password')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('Confirm Password')}}'">
+                                    @error('password_confirmation')
+                                    <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
                                     </div>
+                                    @enderror
                                 </div>
-                                @error('password_confirmation')
-                                <span class="invalid-feedback warn-color d-inline-block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                                <div class="text-center mt-2">
-                                    <button class="mdc-button mdc-button--raised" type="submit">
-                                        <span class="mdc-button__ripple"></span>
-                                        <span class="mdc-button__label">{{__('sign_up_title')}}</span>
-                                    </button>
-                                </div>
+
+                                <div class="text-center"><button class="btn btn_lg" type="submit"><strong>{{__('sign_up_title')}}</strong></button></div>
                             @endif
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
+    </section>
 @endsection
 
 
