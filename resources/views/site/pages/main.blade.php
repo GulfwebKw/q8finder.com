@@ -9,6 +9,71 @@
 
 @section('head')
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .listAdvertise .advertise .card_details .first-time {
+            display: none;
+        }
+        .listAdvertise .advertise .card_details .second-time , .listAdvertise .advertise .card_details .advertise-description  {
+            display: block;
+        }
+        @media (max-width: 992px) {
+            body {
+                background-color: #111720 !important;
+            }
+            .listAdvertise {
+                background-color: #111720 !important;
+                padding-top: 15px;
+            }
+            .listAdvertise .advertise {
+                background-color: #252d3a  !important;
+                border-radius: 10px 30px 30px 10px;
+                margin: 0 40px 10px 0 !important;
+                padding: 0;
+            }
+            .listAdvertise .advertise .desk_hide {
+                display: block !important;
+            }
+            .listAdvertise .advertise .share i {
+                margin: 10px;
+            }
+            .listAdvertise .advertise .share {
+                right: -40px;
+                bottom: 23px;
+                top: auto;
+                background-color: black;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .listAdvertise .advertise .card_details {
+                padding-bottom: 0;
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+            .listAdvertise .advertise .featured {
+                top: 15px;
+                right: 15px;
+                border-radius: 0 10px 0 0;
+            }
+            .listAdvertise .advertise .card_details .text-left{
+                margin-bottom: 0;
+            }
+            .listAdvertise .advertise .card_details .first-time {
+                display: block;
+            }
+            .listAdvertise .advertise .card_details .second-time ,.listAdvertise .advertise .card_details .advertise-description {
+                display: none;
+            }
+            .listAdvertise .advertise .ad_img{
+                border-radius: 10px 25px 10px 10px;
+                margin: 5px;
+                width: calc(100% - 10px);
+            }
+            .listAdvertise .advertise .advertise-header-time{
+                display: none;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -83,6 +148,20 @@
                 }
                 return input;
             },
+            share(title ,text , url ){
+                if (navigator.share) {
+                    navigator.share({
+                        title: title,
+                        text: text,
+                        url: url,
+                    })
+                        .then(() => console.log('Successful share'))
+                        .catch((error) => console.log('Error sharing', error));
+                } else {
+                    console.log('Share not supported on this browser, do it the old way.');
+                    window.open('https://web.whatsapp.com/send?text='+encodeURIComponent(url)+'&title='+encodeURIComponent(title));
+                }
+            },
         }" x-init="fetchAreas();fetchTypes();search();">
         @isset($company)
             {{--    @include('site.sections.company-info')--}}
@@ -112,7 +191,7 @@
             </div>
         </section>
 
-        <section>
+        <section class="listAdvertise">
             <div class="container">
                 <div class="row">
                     @include('site.sections.card')

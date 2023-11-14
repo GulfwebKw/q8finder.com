@@ -3,9 +3,8 @@
 
 html body{
     margin: 0;
-    margin: 0;
     font-family: 'Noto Kufi Arabic', sans-serif;
-    background-color:#252d3a !important;
+    background-color:#252d3a;
     font-size: 13px;
     text-align: right;
     line-height: 25px;
