@@ -25,7 +25,6 @@
     margin:0 0 0 45px !important;
     overflow-y: auto; /* enable scroll for menu items */
     width:500px; /* this width will hide scroll bar */
-    height:95%;
 }
 .side-menu-wrapper > ul > li > a { /* links */
     display: block;
