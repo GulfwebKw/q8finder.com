@@ -43,6 +43,9 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 
 {{--    <a href="#" class="menu-close">--}}
     <main>
+        @hasSection('disableHeaderNavbar')
+
+        @else
         <section>
             <div class="container">
                 <div class="row">
@@ -68,6 +71,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
                     </div>
                 </div>
         </section>
+        @endif
 	    @include('site.sections.fail-flash')
 
 	    @yield('content')
