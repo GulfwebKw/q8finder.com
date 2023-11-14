@@ -124,7 +124,7 @@
                     @endif
                     @if($advertising->user->isCompany and false)
                         <a href="{{route('companies.info', [app()->getLocale(),$advertising->user->company_phone,$advertising->user->company_name])}}"
-                           class="mdc-button">
+                           class="btn btn_lg">
                             {{__('company_details')}}
                         </a>
                         <div class="clearfix"></div>
@@ -149,7 +149,7 @@
                                     <input type="hidden" name="video" value="{{$advertising->video}}">
                                     <input type="hidden" name="replace_other_image" value="{{$advertising->other_image}}">
                                     <input type="hidden" name="replace_main_image" value="{{$advertising->main_image}}">
-                                    <button type="submit" class="mdc-button">
+                                    <button type="submit" class="btn btn_lg">
                                         ({{ __('renew') }})
                                     </button>
                                 </form>
