@@ -41,10 +41,10 @@
                                             </form>
                                         </li>
                                     @endif
-                                    <li>
-                                        @include('site.sections.socials', ['sidebar' => true])
-                                    </li>
                                 </ul>
+                                <div style="margin:15px;">
+                                    @include('site.sections.socials', ['sidebar' => true])
+                                </div>
                             </div>
                         </div>
                     </div>
