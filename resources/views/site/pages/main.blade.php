@@ -198,7 +198,7 @@
                 </div>
             </div>
         </section>
-        <div x-intersect:enter="if (page < totalPage) { page++;search();}"></div>
+        <div x-intersect:enter="if (page < totalPage) { page++;search();}" style="display: block;height: 80px;width: 100%;"></div>
     </div>
 
 @endsection
