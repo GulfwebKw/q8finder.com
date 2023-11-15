@@ -24,6 +24,7 @@ class CheckLng
         }
 //        dd(app()->getLocale());
 
+        app()->setLocale('ar');
         return $next($request);
     }
 }
