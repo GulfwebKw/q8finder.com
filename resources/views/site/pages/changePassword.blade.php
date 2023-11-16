@@ -19,63 +19,45 @@
         @csrf
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <div class="mdc-text-field mdc-text-field--outlined w-100">
-                    <input type="password" name="current" id="current"  class="mdc-text-field__input @error('current') is-invalid @enderror" placeholder="{{__('Current_Password')}}" required >
-                    <div class="mdc-notched-outline">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch">
-                            <label class="mdc-floating-label">{{__('Current_Password')}}</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                    </div>
-                </div>
+                <label>{{__('Password')}}</label>
+                <input type="password" dir="ltr" class="input text-left @error('current') is-invalid @enderror"
+                       name="current"
+                       placeholder="{{__('Password')}}">
                 @error('current')
-                <span class="invalid-feedback warn-color">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                <div class="invalid-feedback warn-color">
+                    <strong>{{ $message }}</strong>
+                </div>
                 @enderror
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-lg-6 col-md-6">
-                <div class="mdc-text-field mdc-text-field--outlined w-100">
-                    <input type="password" name="password" id="password"  class="mdc-text-field__input @error('password') is-invalid @enderror" placeholder="{{__('new_Password')}}" required  >
-                    <div class="mdc-notched-outline">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch">
-                            <label class="mdc-floating-label">{{__('new_Password')}}</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                    </div>
-                </div>
+                <label>{{__('new_Password')}}</label>
+                <input type="password" dir="ltr" class="input text-left @error('password') is-invalid @enderror"
+                       name="password"
+                       placeholder="{{__('new_Password')}}">
                 @error('password')
-                <span class="invalid-feedback warn-color">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                <div class="invalid-feedback warn-color">
+                    <strong>{{ $message }}</strong>
+                </div>
                 @enderror
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="mdc-text-field mdc-text-field--outlined w-100">
-                    <input type="password" name="password_confirmation" id="password_confirmation"  class="mdc-text-field__input @error('password_confirmation') is-invalid @enderror" placeholder="{{__('Confirm Password')}}" required  >
-                    <div class="mdc-notched-outline">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__notch">
-                            <label class="mdc-floating-label">{{__('Confirm Password')}}</label>
-                        </div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                    </div>
-                </div>
+                <label>{{__('Confirm Password')}}</label>
+                <input type="password" dir="ltr" class="input text-left @error('password_confirmation') is-invalid @enderror"
+                       name="password_confirmation"
+                       placeholder="{{__('Confirm Password')}}">
                 @error('password_confirmation')
-                <span class="invalid-feedback warn-color">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                <div class="invalid-feedback warn-color">
+                    <strong>{{ $message }}</strong>
+                </div>
                 @enderror
             </div>
 
         </div>
 
-        <button type="submit" class="mdc-button mdc-button--raised mdc-ripple-upgraded" style="margin-top:30px;">{{__('save_title')}} &amp; {{__('upload_title')}}</button>
+        <button type="submit" class="btn btn_lg" style="margin-top:30px !important;">{{__('save_title')}} &amp; {{__('upload_title')}}</button>
 
 
     </form>
