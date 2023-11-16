@@ -47,8 +47,8 @@
                     <div class="card card-subscribe card-buy companies-card rounded">
                         <div class="card-body p-3">
                             <div class="row">
-                                <p class="w-100 center-xs text-md fw-600">{{__('balance')}}</p>
-                                <div class="d-flex justify-evenly w-100 px-3">
+                                <p class="w-100 text-center text-md fw-600">{{__('balance')}}</p>
+                                <div class="d-flex justify-content-around w-100 px-3">
                                     <p class="primary-color fw-600">{{ $credit['count_normal_advertising'] }}
                                         {{__('ads_title')}}</p>
                                     <p class="primary-color fw-600">{{ $credit['count_premium_advertising'] }}
@@ -60,7 +60,7 @@
                 </div>
                 @endif
 
-                <div class="column center-xs middle-xs text-center">
+                <div class="column text-center middle-xs text-center">
                     <h1 class="uppercase">{{__('buy_package_title')}}</h1>
                     <p class="text-muted fw-500">{{__('subscribetoourpackagenote')}}</p>
                 </div>

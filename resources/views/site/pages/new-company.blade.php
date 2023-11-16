@@ -118,7 +118,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-4 col-md-3 p-3 center-xs">
+                            <div class="col-xs-12 col-sm-4 col-md-3 p-3 text-center">
                                 <img src="{{ asset('/asset/images/logo-placeholder-image.png') }}" alt="company-image"
                                      class="mw-200 d-block mx-auto" id="uploadedImage">
                                 <input type="file" id="inputImage" name="image" accept="image/*" class="d-none">

@@ -89,6 +89,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 	</script>
 
 	@yield('finalScripts')
+	@yield('js')
 
 </body>
 

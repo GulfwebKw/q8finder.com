@@ -61,7 +61,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                              class="mw-100  w-100 d-block rounded small-only-max-height max-height h-auto">
                                     </a>
                                 </div>
-                                <div class="col-md-8 col-xs-12 col-md-12 center-xs p-0">
+                                <div class="col-md-8 col-xs-12 col-md-12 text-center p-0">
                                         <a href="{{route('site.search.service' , [app()->getLocale() , $category->id , $route_city])}}"
                                             class="my-1 fw-600 text-body links company-name d-flex align-items-center justify-content-center line-height-sm">{{ $category['title_'.app()->getLocale()] }}</a>
                                 </div>
@@ -98,7 +98,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 
         <div class="theme-container md:px-5" id="app" data-locale="{{app()->getLocale()}}" data-requiredPage="0" data-servicePage="1" @if( (int) $route_service > 0 ) data-categoryService="{{ $route_service }}" @endif @if( (int) $route_city > 0 ) data-cityService="{{  $route_city  }}" @endif>
 
-            <div class="center-xs">
+            <div class="text-center">
                 <h3 v-if="notFound && newAds" class="alert alert-danger text-center mt-2">
                     <strong>{{__('norecord')}}</strong></h3>
                 <h3 v-if="notFound && newAds" class="alert text-center mt-2"><strong>{{__('showing_new_ads')}}</strong>
@@ -107,7 +107,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 
             @include('site.sections.card')
 
-                <div class="center-xs" id="pageEnd1">
+                <div class="text-center" id="pageEnd1">
                     <img v-if="isLoading !== false" src="{{asset('images/main/loading.gif')}}" alt="loading"
                          class="loading">
                     {{-- <h3 v-else-if="noMore" class="mt-2">{{__('no_more_ads')}}</h3>--}}

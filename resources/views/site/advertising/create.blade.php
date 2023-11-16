@@ -343,7 +343,7 @@
                                     <div id="files">
 
                                     </div>
-                                    <div class="col-xs-12 p-2 mt-3 center-xs">
+                                    <div class="col-xs-12 p-2 mt-3 text-center">
                                         <button class="mdc-button mdc-button--raised next-tab" type="submit">
                                             <span class="mdc-button__ripple"></span>
                                             <span class="mdc-button__label">{{__('Submit')}}</span>

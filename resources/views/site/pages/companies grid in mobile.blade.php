@@ -28,7 +28,7 @@ $side = app()->getLocale() === 'en' ? 'r' : 'l';
             $companyRoute = route('companies.info',
             [app()->getLocale(),auth()->user()->company_phone,auth()->user()->company_name]);
             $cardMessage = '<a href="'. $companyRoute .'" class="links">' . __('see_your_company') . '</a>'
-            . '<br>' . '<a onclick="'. $confirmJs .'" class="center-xs d-block links">' . __('downgrade_account') .
+            . '<br>' . '<a onclick="'. $confirmJs .'" class="text-center d-block links">' . __('downgrade_account') .
                 '</a>'; @endphp
             {{-- @elseif($balance !== 0)
             @php $cardMessage = __('already_have_package'); @endphp --}}
@@ -44,7 +44,7 @@ $side = app()->getLocale() === 'en' ? 'r' : 'l';
                                 <img src="{{route('image.upgrade-company', '')}}" alt="upgrade"
                                     class="w-100 d-block rounded">
                             </div>
-                            <div class="col-md-8 col-xs-7 center-xs p-0 pl-3 company-card-body">
+                            <div class="col-md-8 col-xs-7 text-center p-0 pl-3 company-card-body">
                                 <p class="mb-3 fw-600">{{__('upgrade_account')}}</p>
 
                                 <a href="{{ route('companies.new', app()->getLocale()) }}"
@@ -83,7 +83,7 @@ $side = app()->getLocale() === 'en' ? 'r' : 'l';
                                         class="mw-100 w-100 d-block rounded small-only-max-height max-height h-100">
                                 </a>
                             </div>
-                            <div class="col-md-8 col-xs-12 col-md-12 center-xs p-0">
+                            <div class="col-md-8 col-xs-12 col-md-12 text-center p-0">
 
                                 @php
                                 $tel = \Illuminate\Support\Str::startsWith($company->company_phone, '+') ?

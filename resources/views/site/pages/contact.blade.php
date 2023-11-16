@@ -17,7 +17,7 @@
             <div class="mdc-card main-content-header mb-5 sec-min-h center">
                 <div class="row around-xs">
 {{--                    <div class="col-xs-12 col-sm-3">--}}
-{{--                        <div class="column center-xs middle-xs text-center">--}}
+{{--                        <div class="column text-center middle-xs text-center">--}}
 {{--                            <i class="material-icons mat-icon-lg primary-color">location_on</i>--}}
 {{--                            <h3 class="primary-color py-1">{{__('location_title')}} :</h3>--}}
 {{--                            @if (app()->getLocale()=='en')--}}
@@ -28,7 +28,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     {{-- <div class="col-xs-12 col-sm-3">
-                        <div class="column center-xs middle-xs text-center">
+                        <div class="column text-center middle-xs text-center">
                             <i class="material-icons mat-icon-lg primary-color">call</i>
                             <h3 class="primary-color py-1">{{__('administrator')}} :</h3>
                             <span> <span class="text-muted fw-500">{{__('administrator')}}: </span><a class="text-muted fw-500" href="tel:{{ $phone2 }}">{{ $phone2 }}</a></span>
@@ -36,14 +36,14 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-3">
-                        <div class="column center-xs middle-xs text-center">
+                        <div class="column text-center middle-xs text-center">
                             <i class="material-icons mat-icon-lg primary-color">mail_outline</i>
                             <h3 class="primary-color py-1">{{__('email_us') }} :</h3>
                             <a class="text-muted fw-500" href="mailto:{{ $email }}">{{ $email }}</a>
                         </div>
                     </div> --}}
                     <div class="col-12">
-                        <div class="column center-xs middle-xs text-center">
+                        <div class="column text-center middle-xs text-center">
                             <h3 class="primary-color py-1">{{__('contact_us')}}</h3>
                             <i class="material-icons mat-icon-lg primary-color">public</i>
                             <div>
@@ -61,11 +61,11 @@
                     <h3 class="w-100 text-center pt-3">{{__('dropaline')}}</h3>
                     <p class="mt-2">{{__('dropaline_note')}}</p>
                     @if((session('status')) == 'success')
-                        <div class="alert alert-success center-xs w-100">
+                        <div class="alert alert-success text-center w-100">
                             <strong>{{ __('success_title') }}!</strong> {{__('contact_success')}}!
                         </div>
                     @elseif((session('status')) == 'unsuccess')
-                        <div class="alert alert-danger center-xs w-100">
+                        <div class="alert alert-danger text-center w-100">
                             <strong>{{ __('un_success_title') }}!</strong> {{__('contact_unsuccess')}}!
                         </div>
                     @endif

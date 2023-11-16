@@ -3,7 +3,7 @@
         <div class="theme-container company-container p-5 sm:py-4 md:py-4 rounded" style="background: var(--mdc-theme-primary)">
             <div class="row" style="flex-wrap: wrap; align-items: center;">
                 <img src="{{ asset($company->image_profile) }}" class="col-xs-6 col-sm-7 col-lg-4-image p-0 mw-100 d-block rounded mx-auto">
-                <div class="col-xs-12 col-sm-12 col-lg-7 col-xl-8 p-0 center-xs text-white">
+                <div class="col-xs-12 col-sm-12 col-lg-7 col-xl-8 p-0 text-center text-white">
 
                     @php
                         $tel = \Illuminate\Support\Str::startsWith($company->company_phone, '+') ? $company->company_phone : "+{$company->company_phone}";
@@ -21,7 +21,7 @@
                                 <i class="material-icons mdc-button__icon">phone</i>
                             </a>
                             <br>
-                            
+
                             {{-- <span class="flex flex-container" onclick="event.preventDefault(); location = '/{{ app()->getLocale() }}/confirm-report/company/{{ $company->id }}'">
                                 <i class="material-icons-outlined mat-icon-sm text-muted m{{$side}}-1 text-white"
                                 style="font-size: 22px">sms_failed</i>
