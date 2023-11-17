@@ -27,7 +27,7 @@
             .listAdvertise .advertise {
                 background-color: #252d3a  !important;
                 border-radius: 10px 30px 30px 10px;
-                margin: 0 40px 10px 0 !important;
+                margin: 0 55px 10px 0 !important;
                 padding: 0;
             }
             .listAdvertise .advertise .desk_hide {
