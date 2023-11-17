@@ -41,10 +41,9 @@
     <div class="px-3">
         <div class="theme-container">
             <div class="my-5">
-
                 @if ( ! env('NORMAL_ADS_FREE' , false) )
                 <div class="col-xs-11 col-sm-7 col-md-4 my-1 mx-auto mb-2">
-                    <div class="card card-subscribe card-buy companies-card rounded">
+                    <div class="card card-subscribe card-buy companies-card rounded" style="background-color: #06090c70;border-color: #fff;">
                         <div class="card-body p-3">
                             <div class="row">
                                 <p class="w-100 text-center text-md fw-600">{{__('balance')}}</p>
@@ -67,88 +66,21 @@
 
                 <div class="mdc-tab-bar-wrapper centered pricing-tabs">
                     @if ( ! env('NORMAL_ADS_FREE' , false) )
-                    <div class="mdc-tab-bar mb-3">
-                        <div class="mdc-tab-scroller">
-                            <div class="mdc-tab-scroller__scroll-area">
-                                <div class="mdc-tab-scroller__scroll-content">
-                                    <button class="mdc-tab mdc-tab--active" tabindex="0">
-                                        <span class="mdc-tab__content">
-                                            <span class="mdc-tab__text-label text-xs fw-600">{{__('payasyougo')}}</span>
-                                        </span>
-                                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                                            <span
-                                                class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                        </span>
-                                        <span class="mdc-tab__ripple"></span>
-                                    </button>
-                                    <button class="mdc-tab mdc-tab" tabindex="0">
-                                        <span class="mdc-tab__content">
-                                            <span
-                                                class="mdc-tab__text-label text-xs fw-600">{{__('longtermsubscribe')}}</span>
-                                        </span>
-                                        <span class="mdc-tab-indicator mdc-tab-indicator">
-                                            <span
-                                                class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                        </span>
-                                        <span class="mdc-tab__ripple"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <ul  class="d-flex justify-content-center nav" role="tablist" style="column-gap: 20px;">
+                            <li role="presentation" class="active p-3 rounded"><a href="#payasyougo" aria-controls="payasyougo" role="tab" data-toggle="tab">{{__('payasyougo')}}</a></li>
+                            <li role="presentation" class=" p-3 rounded"><a href="#longtermsubscribe" aria-controls="longtermsubscribe" role="tab" data-toggle="tab">{{__('longtermsubscribe')}}</a></li>
+                        </ul>
                     @endif
                     <div class="tab-content tab-content--active">
                         <div class="row">
-                            {{-- <div class="col-xs-12 col-sm-12 col-md-6 p-2">
-                                <div class="row ">
-                                    @csrf
-                                    <div style="width: 50%">
-                                        <div class="mdc-card pricing-card text-center  p-0 h-100">
-                                            <div class="bg-primary pricing-header py-4">
-                                                <h2 class="">{{ __("free_ad") }}</h2>
-                                            </div>
-                                            <div class="px-2 ad-plan-bottom">
-
-                                                <div>
-                                                    <input type="hidden" class="form-control" name="payment_type"
-                                                        value="CBKPay">
-                                                    <div
-                                                        class="mdc-text-field mdc-text-field--outlined w-100 custom-field mb-3">
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="width: 50%">
-                                        <div class="c w-100" style="height: calc(100% - 40px)">
-                                            <div class="text-center f-d-column">
-                                                <div class="d-block pb-2">
-                                                    <div class="c">
-                                                        <a href="/{{ app()->getLocale() }}/advertising/create"
-                                                            class="pe-auto text-decoration-none bg-orange rounded-full ar-eq w-30px c d-inline-block mx-auto">
-                                                            <i class="material-icons text-white">add</i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <p>{{ __('free_ad') }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="w-100 px-2" style="height: 40px">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                             @foreach($statics as $static)
                             <div class="col-xs-12 col-sm-12 col-md-6 p-2">
                                 <form method="post" action="{{ route('Main.buyPackageOrCredit',app()->getLocale()) }}"
-                                    class="row ">
-                                    @csrf
-                                    <div style="width: 50%;font-size: 12px">
-                                        <div class="mdc-card pricing-card text-center border-accent p-0 h-100">
-                                            <div class="bg-accent pricing-header px-2">
+                                    class="d-flex">
+                                    <div class="w-100">
+                                        @csrf
+                                        <div class="mdc-card pricing-card text-center border-accent p-0 h-100" style="border-color: #fff;">
+                                            <div class="bg-accent pricing-header px-2 py-4 rounded" style="background-color: #06090c70;">
                                                 <h1 class="fs-sm-20">@if( $static->old_price > $static->price ) <small>
                                                         <span class="del opacity-70">{{ $static->old_price }} </span>
                                                     </small> @endif {{$static->price }}<small> {{__('kd_title')}}
@@ -168,21 +100,12 @@
                                                 <div>
                                                     <input type="hidden" class="form-control" name="payment_type"
                                                         value="CBKPay">
-                                                    <div
-                                                        class="mdc-text-field mdc-text-field--outlined w-100 custom-field mb-3">
-                                                        <input type="number" value="1" min="1"
-                                                            class="mdc-text-field__input fs-6"
-                                                            placeholder="{{__('noofads')}}" name="count" id="{{ "
-                                                            static-num-" . $static->id }}" required>
-                                                        <div class="mdc-notched-outline mdc-notched-outline--upgraded">
-                                                            <div class="mdc-notched-outline__leading"></div>
-                                                            <div class="mdc-notched-outline__notch">
-                                                                <label class="mdc-floating-label"
-                                                                    style="">{{__('noofads')}}</label>
-                                                            </div>
-                                                            <div class="mdc-notched-outline__trailing"></div>
-                                                        </div>
-                                                    </div>
+
+                                                    <label>{{__('noofads')}}</label>
+                                                    <input type="number" dir="ltr" class="input text-left "
+                                                           value="1"  name="count" min="1" id="{{ "
+                                                            static-num-" . $static->id }}" required
+                                                           placeholder="{{__('noofads')}}">
                                                 </div>
                                                 <input type="hidden" name="type" value="static">
                                                 <input type="hidden" name="package_id" value="{{ $static->id }}">
@@ -190,14 +113,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="width: 50%">
-                                        <div class="c w-100 " style="height: calc(100% - 40px)">
-                                            <div class="text-center f-d-column">
+                                    <div class="w-100">
+                                        <div class="c w-100 d-flex justify-center" style="height: calc(100% - 50px);align-items: center;">
+                                            <div class="text-center f-d-column w-100">
                                                 <div class="d-block pb-2">
-                                                    <div class="c">
+                                                    <div class="c" style="cursor: pointer;">
                                                         <div onclick='{{ $credit["count_premium_advertising"] }} > 0 ? (location.href = "/"+"{{ app()->getLocale() }}"+"/advertising/create?type=premium&show_ad_type_option=true") : alert("{{ trans("have_no_package") }}")'
                                                             class="pe-auto bg-orange rounded-full ar-eq w-30px c d-inline-block mx-auto">
-                                                            <i class="material-icons text-white">add</i>
+                                                            <i class="fa fa-plus-circle fa-2x" style="color: #ff9800"></i>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,10 +128,8 @@
                                             </div>
                                         </div>
                                         <div class="w-100 px-2" style="height: 40px">
-                                            <button type="submit" class=" mdc-button mdc-button--raised d-block"
-                                                style="margin-left: auto">
-                                                <span class="mdc-button__ripple"></span>
-                                                <span class="mdc-button__label">{{__('buy')}}</span>
+                                            <button type="submit" class="btn btn_lg d-block"
+                                                style="margin-left: auto;max-width: 100px;">{{__('buy')}}
                                             </button>
                                         </div>
                                     </div>
