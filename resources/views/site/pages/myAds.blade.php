@@ -64,7 +64,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
         </a>
     </div>
 </div>
-<div class="mdc-data-table border-0 w-100 mt-3">
+<div class="table-responsive border-0 w-100 mt-3">
     <table class="table table-striped table-borderless sm:compress" aria-label="Dessert calories">
         <thead>
             <tr class="mdc-data-table__header-row">
