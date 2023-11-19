@@ -39,7 +39,7 @@
 </style>
 <main>
     <div class="px-3">
-        <div class="theme-container">
+        <div class="container">
             <div class="my-5">
                 @if ( ! env('NORMAL_ADS_FREE' , false) )
                 <div class="col-xs-11 col-sm-7 col-md-4 my-1 mx-auto mb-2">
