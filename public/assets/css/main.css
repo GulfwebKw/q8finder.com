@@ -3,8 +3,9 @@
 
 html body{
     margin: 0;
+    margin: 0;
     font-family: 'Noto Kufi Arabic', sans-serif;
-    background-color:#252d3a;
+    background-color:#252d3a !important;
     font-size: 13px;
     text-align: right;
     line-height: 25px;
@@ -73,7 +74,7 @@ nav ul > li a:link, nav ul > li a:visited, nav ul > li a:active{color: #252d3a;}
 
 .active a:link, .active a:visited, .active a:active{color:#ffffff;}
 
-.logo{width:200px; height: auto; float: right;}
+.logo{width:200px; height: auto; text-align: center;}
 
 .logo_sidemenu{width:180px; height: auto; float:left; margin: -8px 0 0 10px;}
 
@@ -126,11 +127,11 @@ small{font-size: 13px !important;}
 
 .featured{
     position: absolute;
-   background: #e64b6a;
-   top:25px;
-   right: 15px;
-   padding: 4px 12px;
-   font-size: 18px;
+    background: #e64b6a;
+    top:41px;
+    right: 15px;
+    padding: 4px 12px;
+    font-size: 18px;
 }
 
 .share{
@@ -241,7 +242,7 @@ hr{
     text-align: center;
     color: #c6c6c6;
     line-height: 48px;
-  }
+}
 
 /* Text Color */
 .text-blue{color: #8dc7ef !important;}
@@ -326,6 +327,10 @@ h6{font-weight: bold !important;}
 /* icons */
 i{margin: 0 0 0 10px;}
 
+.gray_bg{background: #303946; padding: 13px 0; margin:0 0 15px 0;}
+
+.top_menu{list-style: none;}
+.top_menu li{float: right; margin: 0 15px 0 15px;}
 
 /*iPod, Tablet Devices*/
 @media all and (max-width: 1200px) and (min-width: 480px){
@@ -334,19 +339,20 @@ i{margin: 0 0 0 10px;}
 
 /*Mobile Devices.*/
 @media all and (max-width: 480px) and (min-width: 320px){
-.card_details{margin: 0 0 20px 0;}
-footer{text-align: center !important;}
-.footer_social{margin:20px 0 0 35% !important;}
-.mob_hide{display: none;}
-.desk_hide{display:block !important;}
-.input, .select_input{margin: 0 0 20px 0;}
-.seach_container{margin: 30px 0 30px 0;}
-.my_search{
-    padding: 0 !important;
-    margin: 0 2px;
+    .card_details{margin: 0 0 20px 0;}
+    footer{text-align: center !important;}
+    .footer_social{margin:20px 0 0 35% !important;}
+    .mob_hide{display: none;}
+    .desk_hide{display:block !important;}
+    .input, .select_input{margin: 0 0 20px 0;}
+    .seach_container{margin: 30px 0 30px 0;}
+    .my_search{
+        padding: 0 !important;
+        margin: 0 2px;
     }
-.mr10{margin-right: 10px;}
-h3{font-size: 23px !important;}
-.ad_img{height: 200px;}
-p{margin: 0 !important;}
+    .mr10{margin-right: 10px;}
+    h3{font-size: 23px !important;}
+    .ad_img{height: 200px;}
+    p{margin: 0 !important;}
+    .featured{top: 25px !important;}
 }

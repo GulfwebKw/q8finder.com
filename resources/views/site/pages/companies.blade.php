@@ -12,9 +12,6 @@
             display: inline-block;
             /* transform: translateY(-2px); */
         }
-        a:link, a:visited, a:active {
-            color: #567ff3;
-        }
         .card {
             background-color: transparent;
             border: 1px solid rgb(255 255 255 / 14%);
