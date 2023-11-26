@@ -1,5 +1,5 @@
 <template x-for="ad in advertise">
-    <div class="col-10 col-lg-3 mx-auto advertise">
+    <div class="col-101 col-lg-3 mx-auto advertise">
         <p class="text-center advertise-header-time" x-text="ad.created_at"></p>
         <div class="featured" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>
         <div @click="share( (ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}}) ,ad.description , ad.share_link.{{ app()->getLocale()  }} );" class="share desk_hide"><i class="fa fa-share"></i></div>
