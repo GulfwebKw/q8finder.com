@@ -37,7 +37,11 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 </head>
 
 <body>
-
+    @hasSection('disableFloatAdButton')
+    @else
+        <!-- Add Advertisement -->
+        <a href="{{route('site.advertising.create', app()->getLocale())}}" class="add_float"><i class="fa fa-plus fa-2x"></i></a>
+    @endif
 
 	@include('site.layout.header')
 
