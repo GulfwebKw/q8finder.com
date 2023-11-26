@@ -70,13 +70,13 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
             <tr class="mdc-data-table__header-row">
                 <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important"
                     style="padding-{{$edge}}: 0 !important;">{{ __('image') }}</th>
-                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important d-none-mobile">
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important mob_hide">
                     {{__('ADVERTISE_TYPE')}}</th>
                 <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important">{{ __('location_title') }}
                 </th>
                 <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important display-table-control">{{
                     __('price') }}</th>
-                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important display-table-control">{{
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important display-table-control mob_hide">{{
                     __('action_title') }}</th>
                 {{-- <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important">{{
                     __('auto_extend_title') }}</th> --}}
@@ -111,7 +111,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         </div>
                     </a>
                 </td>
-                <td class="mdc-data-table__cell sm:px-2 text-center-important d-none-mobile">
+                <td class="mdc-data-table__cell sm:px-2 text-center-important mob_hide">
                     @if($ad->advertising_type == "premium")
                     {{__('premium_short')}}
                     @elseif($ad->advertising_type == "normal")
@@ -122,19 +122,24 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                     {{ app()->getLocale()==='en'?optional($ad->city)->name_en . " - " . optional($ad->area)->name_en:optional($ad->city)->name_ar . "
                     - " . optional($ad->area)->name_ar }}
 
-                    <div class="d-sm-none d-md-none d-lg-none d-xl-none">
+                    <div class="desk_hide">
                         <form id="delete-form-{{$ad->id}}" class="d-inline-block" method="post"
                             action="{{ route('site.advertising.destroy',app()->getLocale()) }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $ad->id }}">
 
                             @if(! $ad->expire_at)
-                            <a href="{{ route('site.advertising.edit',[app()->getLocale(),$ad->hash_number]) }}"
-                                class="btn btn-info material-icons primary-color sm:px-2">edit</a>
+                                @if ($ad->purpose === 'required_for_rent')
+                                    <a href="{{ route('site.advertising.editRFR',[app()->getLocale(),$ad->hash_number]) . ( $ad->purpose == "service" ? '?service=1' : '') }}"
+                                       class="btn btn-link text-warning sm:px-2"><i class="fa fa-pencil fa-2x" style="margin: 0;font-size: 1.5em;"></i></a>
+                                @else
+                                    <a href="{{ route('site.advertising.edit',[app()->getLocale(),$ad->hash_number]). ( $ad->purpose == "service" ? '?service=1' : '')  }}"
+                                       class="btn btn-link text-warning sm:px-2"><i class="fa fa-pencil fa-2x" style="margin: 0;font-size: 1.5em;"></i></a>
+                                @endif
                             @endif
 
                             <button type="button" id="delete-btn" onclick="showModal({{ $ad->id }})"
-                                class="btn btn-info material-icons warn-color sm:px-2">delete
+                                    class="btn btn-link text-danger sm:px-2"><i class="fa fa-trash fa-2x" style="margin: 0;font-size: 1.5em;"></i>
                             </button>
                         </form>
                         @if ($ad->advertising_type == 'normal')
@@ -143,15 +148,15 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                             @csrf
                             <input type="hidden" name="advertise_id" value="{{$ad->id}}">
                         </form>
-                        <a type="button" id="delete-btn" class="btn btn-info material-icons d-inline-block"
-                            style="color: #c7a014;" onclick="showUpgradeModal('{{$ad->id}}')">workspace_premium</a>
+                            <a type="button" id="delete-btn" class="btn btn-link material-icons d-inline-block"
+                               style="color: #c7a014;" onclick="showUpgradeModal('{{$ad->id}}')"><i class="fa fa-star fa-2x" style="margin: 0;font-size: 1.5em;"></i></a>
                         @endif
                     </div>
                 </td>
                 <td class="text-center">
                     {{ $ad->price }} {{ __('kd_title') }}
                 </td>
-                <td class="mdc-data-table__cell sm:px-2 text-center-important display-table-control">
+                <td class="mdc-data-table__cell sm:px-2 text-center-important display-table-control mob_hide">
                     <form id="delete-form-{{$ad->id}}" class="d-inline-block" method="post"
                         action="{{ route('site.advertising.destroy',app()->getLocale()) }}">
                         @csrf
@@ -160,15 +165,15 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         @if(!$ad->expire_at)
                         @if ($ad->purpose === 'required_for_rent')
                         <a href="{{ route('site.advertising.editRFR',[app()->getLocale(),$ad->hash_number]) }}"
-                            class="btn btn-info material-icons primary-color sm:px-2">edit</a>
+                           class="btn btn-info material-icons primary-color sm:px-2"><i class="fa fa-pencil" style="margin: 0;"></i></a>
                         @else
                         <a href="{{ route('site.advertising.edit',[app()->getLocale(),$ad->hash_number]) }}"
-                            class="btn btn-info material-icons primary-color sm:px-2">edit</a>
+                           class="btn btn-info material-icons primary-color sm:px-2"><i class="fa fa-pencil" style="margin: 0;"></i></a>
                         @endif
                         @endif
 
                         <button type="button" id="delete-btn" onclick="showModal({{ $ad->id }})"
-                            class="btn btn-danger material-icons warn-color sm:px-2">delete
+                                class="btn btn-danger material-icons warn-color sm:px-2"><i class="fa fa-trash" style="margin: 0;"></i>
                         </button>
                     </form>
                     @if ($ad->advertising_type == 'normal')
@@ -178,7 +183,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         <input type="hidden" name="advertise_id" value="{{$ad->id}}">
                     </form>
                         <a type="button" id="delete-btn" class="btn btn-success material-icons d-inline-block"
-                        style="color: #c7a014;" onclick="showUpgradeModal('{{$ad->id}}')">workspace_premium</a>
+                           onclick="showUpgradeModal('{{$ad->id}}')"><i class="fa fa-star" style="margin: 0;"></i></a>
                     @endif
                 </td>
                 {{-- <td class="sm:px-2 text-center-important">
@@ -247,7 +252,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
     </div>
 </div>
 
-<div class="modal fade" id="confirmUpgrade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal" id="confirmUpgrade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -277,76 +282,8 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
 @section('head')
 <style>
     .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 100000;
-        /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
+        color: black !important;
     }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #1e2d3b !important;
-        padding: 20px;
-        border: 1px solid #888;
-        color: #fff !important;
-        /* Could be more or less, depending on screen size */
-        display: flow-root;
-    }
-
-    .btn-danger {
-        color: #fff !important;
-        background-color: #dc3545 !important;
-        border-color: #dc3545 !important;
-
-        float: {{app()->getLocale()=="en"? 'right': 'left'}}
-
-        ;
-    }
-
-    .btn-secondary {
-        color: #fff !important;
-        background-color: #6c757d !important;
-        border-color: #6c757d !important;
-
-        float: {{app()->getLocale()=="en"? 'right': 'left'}}
-
-        ;
-    }
-
-    .btn {
-        display: inline-block;
-        font-weight: 400;
-        color: #212529;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background-color: transparent;
-        border: 1px solid transparent;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        border-radius: 0.25rem;
-        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-
 </style>
 @endsection
 @section('js')
