@@ -148,9 +148,9 @@ class RegisterController extends Controller
     {
         return $this->validate(request(), [
             // 'name' => 'required',
-            'mobile' => 'required|digits:8|unique:users',
+            'mobile' => 'nullable|digits:8|unique:users',
             'password' => 'required|confirmed',
-            'email' => 'nullable|email|unique:users',
+            'email' => 'required_without:mobile|nullable|email|unique:users',
             // 'type_usage'=>'required|in:company,individual',
             //'type_usage'=>'required|in:individual',
             // 'language'=>'required|in:ar,en',

@@ -50,7 +50,7 @@
                             @else
                                 <div class="mb-20">
                                     <label><i class="fa fa-phone fa-lg"></i> {{__('phone_number_title')}}</label>
-                                    <input type="text" name="mobile" value="{{ old('mobile') }}" required dir="ltr" class="input form-control @error('mobile') is-invalid @enderror" placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
+                                    <input type="text" name="mobile" value="{{ old('mobile') }}" dir="ltr" class="input form-control @error('mobile') is-invalid @enderror" placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
                                     @error('mobile')
                                     <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
 
                                 <div class="mb-20">
                                     <label><i class="fa fa-envelope fa-lg"></i> {{__('your_email')}}</label>
-                                    <input type="email" name="email" value="{{ old('email') }}" required dir="ltr" class="input form-control @error('email') is-invalid @enderror" placeholder="{{__('your_email')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('your_email')}}'">
+                                    <input type="email" name="email" value="{{ old('email') }}" dir="ltr" class="input form-control @error('email') is-invalid @enderror" placeholder="{{__('your_email')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('your_email')}}'">
                                     @error('email')
                                     <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
