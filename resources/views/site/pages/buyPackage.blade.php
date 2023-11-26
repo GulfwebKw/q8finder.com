@@ -111,10 +111,13 @@
                                                     <input type="hidden" name="type" value="static">
                                                     <input type="hidden" name="package_id" value="{{ $static->id }}">
 
+                                                    <div class="w-100 desk_hide">
+                                                        <button type="submit" class="btn btn_lg d-block">{{__('buy')}} </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="w-100">
+                                        <div class="w-100 mob_hide">
                                             <div class="c w-100 d-flex justify-center" style="height: calc(100% - 50px);align-items: center;">
                                                 <div class="text-center f-d-column w-100">
                                                     <div class="d-block pb-2">
