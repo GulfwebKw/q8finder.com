@@ -3,7 +3,7 @@
         <p class="text-center advertise-header-time" x-text="ad.created_at"></p>
         <div class="featured" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>
         <div @click="share( (ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}}) ,ad.description , ad.share_link.{{ app()->getLocale()  }} );" class="share desk_hide"><i class="fa fa-share"></i></div>
-        <a :href="ad.share_link.{{ app()->getLocale()  }}"><img :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'" alt="ad" class="ad_img">
+        <a :href="ad.share_link.{{ app()->getLocale()  }}"><img :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'" alt="ad" class="ad_img"  onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';">
             <div class="card_details">
                 <p class="first-time"><img src="{{ asset('assets/img/time.png') }}" alt="" style="width: 20px;margin-right: 3px;">  <span x-text="ad.created_at"></span></p>
                 <p><img src="{{ asset('assets/img/home.png') }}" alt="" style="width: 25px;">  <span x-text="ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}} "></span></p>

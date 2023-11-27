@@ -52,7 +52,7 @@
                 margin-bottom: 10px;
             }
             .listAdvertise .advertise .featured {
-                top: 15px;
+                top: 15px !important;
                 right: 15px;
                 border-radius: 0 10px 0 0;
             }
@@ -173,11 +173,11 @@
                     </div>
                     <div class="col-6 text-left">
                         <small>
-                            <span x-text="selectedTypeObject ? selectedTypeObject.title_{{ app()->getLocale() }} : '' "></span>
-                            <span x-text="selectedPurpose == 'rent' ? '{{ __('rent') }}' : ( selectedPurpose == 'sell' ? '{{ __('sell') }}' : ( selectedPurpose == 'exchange' ? '{{ __('exchange') }}' : ( selectedPurpose == 'commercial' ? '{{ __('commercial') }}' : '' ) ) )" ></span>
-                            <span>{{ __('search_in') }}</span>
-                            <span x-text="selectedCityObject ? selectedCityObject.name_{{ app()->getLocale() }} : '{{ __('search_kuwait') }}' "></span>
-                            <span> (</span><span x-text="totalAdvertise"></span><span> {{ __('ads_title') }})</span>
+                            <span class="just_mob_hide" x-text="selectedTypeObject ? selectedTypeObject.title_{{ app()->getLocale() }} : '' "></span>
+                            <span class="just_mob_hide" x-text="selectedPurpose == 'rent' ? '{{ __('rent') }}' : ( selectedPurpose == 'sell' ? '{{ __('sell') }}' : ( selectedPurpose == 'exchange' ? '{{ __('exchange') }}' : ( selectedPurpose == 'commercial' ? '{{ __('commercial') }}' : '' ) ) )" ></span>
+                            <span class="just_mob_hide">{{ __('search_in') }}</span>
+                            <span class="just_mob_hide" x-text="selectedCityObject ? selectedCityObject.name_{{ app()->getLocale() }} : '{{ __('search_kuwait') }}' "></span>
+                            <span class="just_mob_hide"> (</span><span x-text="totalAdvertise"></span><span> {{ __('ads_title') }}</span><span  class="just_mob_hide">)</span>
                         </small>
                     </div>
                 </div>
