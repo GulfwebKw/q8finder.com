@@ -80,8 +80,8 @@
                              <td>----</td>
                          @endif
 
-                         <td>{{optional($item->package)->title_en??"----"}}</td>
-                         <td>{{$item->price}}</td>
+                         <td>{{optional($item->packageHistory)->count??"-"}}x {{optional($item->package)->title_en??"----"}}</td>
+                         <td>{{$item->amount}}</td>
 {{--                         <td>{{optional($item->packageHistory)->count}}</td>--}}
 {{--                         <td>{{floatval(optional($item->packageHistory)->price)*intval(optional($item->packageHistory)->count)}}</td>--}}
                          <td>@if($item->status=='completed')<font color="#009900">{{$item->status}}</font>@else<font color="#ff0000">{{$item->status}}</font>@endif</td>
