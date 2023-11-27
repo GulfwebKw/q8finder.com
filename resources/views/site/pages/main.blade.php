@@ -87,7 +87,7 @@
             selectedCityObject : null,
             selectedType : null,
             selectedTypeObject : null,
-            isRequiredPage : false,
+            isRequiredPage : {{ isset($required_for_rent) ? 'true' : 'false' }},
             selectedPurpose : '{{ request()->get('type') }}',
             advertise: [],
             purpose_lang:{
