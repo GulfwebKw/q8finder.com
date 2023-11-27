@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Advertising::class, function (Faker $faker) {
     return [
         'type' => 'residential',
-        'purpose' => $faker->randomElement(['rent', 'sell', 'exchange', 'required_for_rent']),
+        'purpose' => $faker->randomElement(['rent', 'sell', 'exchange','commercial', 'required_for_rent']),
         'venue_type' => $faker->randomElement([8, 9, 10, 12]),
         'advertising_type' => $faker->optional($weight = 0.1, $default = 'normal')->randomElement(['premium']),
         'user_id' => $faker->randomElement([\App\User::where('id', '<', 10)->inRandomOrder()->first(), \App\User::where('type_usage', 'company')->first()]),

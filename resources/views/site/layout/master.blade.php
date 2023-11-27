@@ -65,8 +65,11 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
                                 <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'exchange') class="active" @endif>
                                     <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'exchange']) }}">{{__('exchange')}}</a>
                                 </li>
+                                <li style="border: none;" @if (Route::currentRouteName() == 'required_for_rent') class="active" @endif>
+                                    <a href="{{ route('required_for_rent', ['locale' => app()->getLocale()]) }}">{{ __('required_for_rent') }}</a>
+                                </li>
                                 <li style="border: none;" @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'commercial') class="active" @endif>
-                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'commercial']) }}">تجاري</a>
+                                    <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'commercial']) }}">{{ __('commercial') }}</a>
                                 </li>
                                 <div class="clearfix"></div>
                             </ul>

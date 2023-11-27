@@ -23,6 +23,7 @@ class Advertising extends Model implements Feedable
         'Rent' => 'rent',
         'Sell' => 'sell',
         'Exchange' => 'exchange',
+        'commercial' => 'commercial',
         'Required_for_rent' => 'required_for_rent',
         'Service' => 'service',
     ];

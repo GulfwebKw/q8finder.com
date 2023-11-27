@@ -134,6 +134,7 @@
                                         <option  value="rent">{{__('rent')}}</option>
                                         <option  value="sell">{{__('sell')}}</option>
                                         <option  value="exchange">{{__('exchange')}}</option>
+                                        <option  value="commercial">{{__('commercial')}}</option>
                                         <option  value="required_for_rent">{{__('required_for_rent')}}</option>
                                     </select>
                                     @error('purpose')

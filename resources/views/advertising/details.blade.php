@@ -107,6 +107,7 @@
                                         <option @if($advertising->purpose=='rent') selected @endif value="rent">{{__('rent')}}</option>
                                         <option @if($advertising->purpose=='sell') selected @endif value="sell">{{__('sell')}}</option>
                                         <option @if($advertising->purpose=='exchange') selected @endif value="exchange">{{__('exchange')}}</option>
+                                        <option @if($advertising->purpose=='commercial') selected @endif value="commercial">{{__('commercial')}}</option>
                                         <option @if($advertising->purpose=='required_for_rent') selected @endif value="required_for_rent">{{__('required_for_rent')}}</option>
                                     </select>
                                     @error('purpose')

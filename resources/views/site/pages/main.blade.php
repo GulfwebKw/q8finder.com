@@ -94,6 +94,7 @@
                 rent: '{{ __('rent') }}' ,
                 sell: '{{ __('sell') }}' ,
                 exchange: '{{ __('exchange') }}' ,
+                commercial: '{{ __('commercial') }}' ,
                 required_for_rent: '{{ __('required_for_rent') }}'
             },
             areas: [],
@@ -109,15 +110,6 @@
                 .then( data => this.types = data.data.type );
             },
             async search(){
-                if( this.selectedPurpose == 'commercial' ){
-                    this.selectedPurpose = '';
-                    do {
-                        await  new Promise(resolve => setTimeout(resolve, 500));
-                    } while(this.types.length == 0);
-
-                    let obj = this.types.find(o => o.title_en.toLowerCase() == 'commercial');
-                    this.selectedType = obj.id;
-                }
                 fetch('{{ asset('/api/v1/search-advertising') }}?page='+this.page, {
                     method: 'POST',
                     headers: {
@@ -182,7 +174,7 @@
                     <div class="col-6 text-left">
                         <small>
                             <span x-text="selectedTypeObject ? selectedTypeObject.title_{{ app()->getLocale() }} : '' "></span>
-                            <span x-text="selectedPurpose == 'rent' ? '{{ __('rent') }}' : ( selectedPurpose == 'sell' ? '{{ __('sell') }}' : ( selectedPurpose == 'exchange' ? '{{ __('exchange') }}' : '' ) )" ></span>
+                            <span x-text="selectedPurpose == 'rent' ? '{{ __('rent') }}' : ( selectedPurpose == 'sell' ? '{{ __('sell') }}' : ( selectedPurpose == 'exchange' ? '{{ __('exchange') }}' : ( selectedPurpose == 'commercial' ? '{{ __('commercial') }}' : '' ) ) )" ></span>
                             <span>{{ __('search_in') }}</span>
                             <span x-text="selectedCityObject ? selectedCityObject.name_{{ app()->getLocale() }} : '{{ __('search_kuwait') }}' "></span>
                             <span> (</span><span x-text="totalAdvertise"></span><span> {{ __('ads_title') }})</span>

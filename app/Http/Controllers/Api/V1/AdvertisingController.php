@@ -843,7 +843,7 @@ class AdvertisingController extends ApiBaseController
     {
         $validations = [
             'venue_type' => 'required|exists:venue_type,id',
-            'purpose' => 'required|in:rent,sell,exchange,required_for_rent,service',
+            'purpose' => 'required|in:rent,sell,exchange,commercial,required_for_rent,service',
             'area_id' => 'required|exists:areas,id',
             'price' => 'nullable|numeric',
             'other_image' => 'required|array|min:1',
