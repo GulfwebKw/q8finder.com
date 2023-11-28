@@ -14,3 +14,8 @@
 <!-- menu source start here -->
 <link href="{{ asset('assets/menu/armobile_menu.css') }}" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="{{ asset('assets/menu/menu.js') }}"></script>
+
+
+
+<!-- Add Bootstrap JS and jQuery (optional) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

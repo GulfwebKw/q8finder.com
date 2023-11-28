@@ -3,8 +3,19 @@
 @section('title' , __('edit_ad_title'))
 @section('disableHeaderNavbar' , 'yes')
 
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+@endsection
+
 @section('head')
 {{-- {{ dd(@$errors,@$error) }} --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
 <style>
@@ -26,6 +37,28 @@
 
     .invalid-feedback {
         display: unset !important;
+    }
+    .select2-results ul {
+        margin: 0 !important;
+        color: #111720 !important;
+    }
+    .select2-selection ul {
+        margin: 0 !important;
+        color: #111720 !important;
+    }
+    .select2-selection {
+        min-height: 47px !important;
+        padding-top: 8px;
+        padding-right: 10px ;
+    }
+    .select2 {
+        width: 100% !important;
+    }
+    .select2-selection__arrow {
+        margin-top: 8px !important;
+    }
+    .select2-selection__arrow {
+        margin-top: 8px !important;
     }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
@@ -196,7 +229,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                             @else
                                 <div class="mb-20">
                                     <label> {{__('Area')}}</label>
-                                    <select name="area_id" id="area_id"></select>
+                                    <select name="area_id" id="area_id" class="select2"></select>
                                     @error('area_id')
                                     <div class="invalid-feedback warn-color d-inline-block">
                                         <strong>{{ $message }}</strong>

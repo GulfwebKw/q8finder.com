@@ -8,6 +8,8 @@
 @endisset
 
 @section('head')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <style>
         .listAdvertise .advertise .card_details .first-time {
@@ -15,6 +17,17 @@
         }
         .listAdvertise .advertise .card_details .second-time , .listAdvertise .advertise .card_details .advertise-description  {
             display: block;
+        }
+        .select2-results ul {
+            margin: 0 !important;
+            color: #111720 !important;
+        }
+        .select2-selection ul {
+            margin: 0 !important;
+            color: #111720 !important;
+        }
+        .select2-selection {
+            min-height: 47px !important;
         }
         @media (max-width: 992px) {
             body {
@@ -110,6 +123,7 @@
                 .then( data => this.types = data.data.type );
             },
             async search(){
+                console.log(this.selectedCity);
                 fetch('{{ asset('/api/v1/search-advertising') }}?page='+this.page, {
                     method: 'POST',
                     headers: {
@@ -117,7 +131,7 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        area_id: this.selectedCity > 0 ? [this.selectedCity] : null,
+                        area_id: this.selectedCity,
                         venue_type:this.selectedType,
                         isRequiredPage: this.isRequiredPage,
                         purpose: this.selectedPurpose

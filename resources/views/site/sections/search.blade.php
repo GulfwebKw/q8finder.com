@@ -3,8 +3,12 @@
         <div class="mt-10">
             <div class="row">
                 <div class="col-5 col-lg-6 my_search mr10" >
-                    <select class="input select_input" x-model="selectedCity">
-                        <option @click="selectedCityObject = null;">{{__('all')}}</option>
+                    <select x-init="
+      $($refs.selectField).select2().on('change', function (e) {
+        selectedCity = Array.from(e.target.options).filter(option => option.selected).map(option => option.value);
+      });
+	" x-ref="selectField"  class="input select_input multiple-select2" multiple  >
+{{--                        <option @click="selectedCityObject = null;">{{__('all')}}</option>--}}
                         <template x-for="city in areas" >
                             <optgroup :label="city.name_{{ app()->getLocale() }}">
                                 <template x-for="cityArea in city.areas">
