@@ -54,6 +54,7 @@
         <div class="container">
             <div class="row">
                 <!-- Gallery -->
+                @if ($advertising->purpose !== 'required_for_rent')
                 <div class="col-12 col-lg-7">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -101,7 +102,22 @@
                         @endif
                     </div>
                 </div>
+                @else
+                    <div class="col-12 col-lg-7">
+                        <h6>{{ __('Description') }}</h6>
+                        <hr>
+                        <div dir="{{$advertising->description && ! empty($advertising->description) ? (is_arabic($advertising->description) ? 'rtl' : 'ltr') : ''}}">
+                            {!! nl2br(e($advertising->description))!!}
 
+
+                            @if ( $advertising->location_lat and $advertising->location_long)
+                                <p class="">
+                                <div id="map" style="width: 100%;height: 250px;border-radius: 5px;"></div>
+                                </p>
+                            @endif
+                        </div>
+                    </div>
+                @endif
                 <!-- Price -->
                 <div class="col-12 col-lg-5">
                     <div class="details_con">
@@ -164,7 +180,7 @@
                         <span class="back_btn"><a href="javascript:history.back()"><img src="{{ asset('assets/img/back.png') }}" alt=""></a></span>
                     </div>
                 </div>
-
+                @if ($advertising->purpose !== 'required_for_rent')
                 <div class="col-12 col-lg-12 mt-30 mb-50">
                     <h6>{{ __('Description') }}</h6>
                     <hr>
@@ -179,6 +195,7 @@
                         @endif
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
