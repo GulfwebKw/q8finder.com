@@ -34,7 +34,7 @@ class StoreRequest extends FormRequest
                 'city_id' => 'nullable',
                 'area_id' => 'required|numeric|exists:areas,id',
                 'price' => 'nullable|numeric',
-                'other_image' => 'required|array|min:1',
+                'other_image' => 'nullable|array|min:1',
                 'other_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
                 //            // 'other_image' => 'nullable|array',
                 //            //   'other_image.*' => 'mimes:jpeg,bmp,png|max:2048',
@@ -57,7 +57,7 @@ class StoreRequest extends FormRequest
                 'city_id' => 'nullable',
                 'area_id' => 'required|numeric|exists:areas,id',
                 'price' => 'nullable|numeric',
-                'other_image' => 'required|array|min:1',
+                'other_image' => 'nullable|array|min:1',
                 'other_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
             ];
         }

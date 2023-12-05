@@ -76,10 +76,8 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row" style="justify-content: center;">
                 <!-- Gallery -->
-                <div class="col-lg-3 mob_hide">&nbsp;</div>
-
                 <form action="{{ str_contains(request()->path(), 'create') ? route('site.advertising.store', app()->getLocale()) : route('site.advertising.updateAdvertising', app()->getLocale()) }}" method="post" id="sp-basic-form" class="row" enctype="multipart/form-data">
                     @csrf
                     <div class="col-12">
@@ -355,8 +353,11 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                 @endif
 
                                 <div class="col-xs-12 p-2">
-                                    <input type="file" class="custom-file-input" id="customFileImages" name="other_image[]" lang="es" style="margin: -40px 0 0 0;" accept=".png,.jpg,.jpeg">
-                                    <label class="green_btn mt-10" for="customFileImages">{{__('image')}} &nbsp;<i class="fa fa-image fa-lg"></i></label>
+                                    <input type="file" class="green_btn my-pond mt-10"
+                                           id="customFileImages"
+                                           name="other_image[]"
+                                           lang="es" style="margin: -40px 0 0 0;"
+                                           accept=".png,.jpg,.jpeg">
                                     @error('other_image.*')
                                     <div class="invalid-feedback warn-color d-inline-block">
                                         <strong>{{ $message }}</strong>
@@ -407,7 +408,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 
 
 @endsection
-@section('scripts')
+@section('finalScripts')
 
 @if(env('CAN_CHOOSE_LOCATION_IN_SITE' , true))
 <script>
@@ -467,7 +468,17 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 
 <!-- include FilePond jQuery adapter -->
 <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+<style>
+    /* the background color of the filepond drop area */
+    .filepond--panel-root {
+        background-color: rgba(238, 238, 238, 0);
+    }
 
+    /* underline color for "Browse" button */
+    .filepond--drop-label {
+        color: #b5e51d;
+    }
+</style>
 <script>
     // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
@@ -479,7 +490,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                     url: ''
                 },
 
-                labelIdle: "{{ __('add_photos')  }} ({{ __('optional')  }})"
+                labelIdle: "{{ __('add_photos')  }} ({{ __('optional')  }}) <i class=\"fa fa-image fa-lg\"></i>"
             });
             // Set allowMultiple property to true
             $('.my-pond').filepond('allowMultiple', true);
