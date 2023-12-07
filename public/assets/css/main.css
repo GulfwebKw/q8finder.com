@@ -553,6 +553,9 @@ i {
 .advertise-description {
     padding-right: 1rem!important;
 }
+.search-form-for-mobile {
+    margin-bottom: 10px;
+}
 
 /*iPod, Tablet Devices*/
 @media all and (max-width: 1200px) and (min-width: 480px) {
@@ -610,6 +613,10 @@ i {
     .my_search {
         padding: 0 !important;
         margin: 0 2px;
+    }
+    .search-form-for-mobile {
+        padding-right: 13px;
+        margin-bottom: 0;
     }
 
     .mr10 {
