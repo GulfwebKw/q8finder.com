@@ -161,9 +161,9 @@ small {
 
 .featured {
     position: absolute;
-    background: #e64b6a;
-    top: 41px;
-    right: 15px;
+    background: #2196f3;
+    top: 5px;
+    right: 20px;
     padding: 4px 12px;
     font-size: 18px;
 }
@@ -537,6 +537,23 @@ i {
     margin: 0 15px 0 15px;
 }
 
+
+
+.advertise-bg-white {
+    background-color: #ffffff;
+    color: #000000 !important;
+    height: calc(100% - 1rem);
+}
+.card_details {
+    padding: 0 10px;
+}
+.advertise-bg-white a:link, .advertise-bg-white a:visited, .advertise-bg-white a:active{
+    color: #000000 !important;
+}
+.advertise-description {
+    padding-right: 1rem!important;
+}
+
 /*iPod, Tablet Devices*/
 @media all and (max-width: 1200px) and (min-width: 480px) {
 }
@@ -567,6 +584,18 @@ i {
         display: block !important;
     }
 
+    .advertise-bg-white {
+        background-color: #252d3a  !important;
+        color: #ffffff !important;
+        border-radius: 10px 30px 30px 10px;
+        height: calc(100% - 1rem);
+    }
+    .card_details {
+        padding: 0;
+    }
+    .advertise-bg-white a:link, .advertise-bg-white a:visited, .advertise-bg-white a:active{
+        color: #ffffff !important;
+    }
     .navbar-type-advertise ul li {
         padding: 10px 5px;
     }
