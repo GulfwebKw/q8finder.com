@@ -28,6 +28,16 @@
                 </div>
                 <div class="col-3 col-lg-2 my_search"><button class="btn btn_lg" @click="advertise = [];page=1;totalPage=1;totalAdvertise=0;search();">{{__('search')}}</button></div>
             </div>
+
+            @if (request()->is(app()->getLocale().'/required'))
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{route('site.advertising.createRFR', app()->getLocale())}}"
+                           class="btn btn_lg">{{ __('request_a_property') }}
+                        </a>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </section>
