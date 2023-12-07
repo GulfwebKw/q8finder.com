@@ -600,7 +600,10 @@ i {
         color: #ffffff !important;
     }
     .navbar-type-advertise ul li {
-        padding: 10px 5px;
+        /*padding: 10px 5px;*/
+        padding: 10px 0;
+        text-align: center;
+        width: 20%;
     }
     .input, .select_input {
         margin: 0 0 20px 0;

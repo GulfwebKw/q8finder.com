@@ -79,7 +79,18 @@
                         </template>
                     </select>
                 </div>
-                <div class="col-3 col-lg-2 my_search"><button class="btn btn_lg" @click="advertise = [];page=1;totalPage=1;totalAdvertise=0;search();" style="padding-right: 0 !important;padding-left: 0 !important;text-align: center;">{{__('search')}}</button></div>
+                <div class="col-3 col-lg-2 my_search mob_hide">
+                    <button class="btn btn_lg" @click="advertise = [];page=1;totalPage=1;totalAdvertise=0;search();"
+                            style="padding-right: 0 !important;padding-left: 0 !important;text-align: center;">
+                        {{__('search')}}
+                    </button>
+                </div>
+                <div class="col-3 col-lg-2 my_search desk_hide text-center">
+                    <button class="btn btn_lg" @click="advertise = [];page=1;totalPage=1;totalAdvertise=0;search();"
+                            style="padding: 4px !important;margin-top: 7px !important;width: auto;text-align: center;">
+                        {{__('search')}}
+                    </button>
+                </div>
             </div>
 
             @if (request()->is(app()->getLocale().'/required'))

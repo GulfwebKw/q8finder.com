@@ -183,7 +183,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <h3>أحدت الإعلانات</h3>
+                        <h3 class="mob_hide">أحدت الإعلانات</h3>
+                        <h3 class="desk_hide" style="font-size: 15px !important;">أحدت الإعلانات</h3>
                     </div>
                     <div class="col-6 text-left">
                         <small>
