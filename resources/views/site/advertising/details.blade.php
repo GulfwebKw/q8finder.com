@@ -1,4 +1,5 @@
 @extends('site.layout.master')
+@section('disableHeaderNavbar' , 'yes')
 
 @php
     function uniord($u) {
@@ -76,6 +77,7 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img alt="slide image" src="{{$advertising->main_image ? asset($advertising->main_image) : route('image.noimagebig', '') }}"
+                                     onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';"
                                      class="d-block w-100">
                             </div>
                             @if($advertising->video)
@@ -88,7 +90,7 @@
                             @foreach((array) optional(json_decode($advertising->other_image))->other_image as
                             $other_image)
                                 <div class="carousel-item">
-                                    <img alt="slide image" src="{{asset($other_image)}}"  class="d-block w-100" >
+                                    <img alt="slide image" src="{{  $other_image ? asset($other_image) : route('image.noimage', '')}}"  class="d-block w-100" onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';" >
                                 </div>
                             @endforeach
                         </div>
