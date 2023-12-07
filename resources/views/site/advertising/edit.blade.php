@@ -51,7 +51,7 @@
         padding-top: 8px;
         padding-right: 10px ;
     }
-    .select2 {
+    .select2-container {
         width: 100% !important;
     }
     .select2-selection__arrow {
@@ -78,53 +78,30 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
         <div class="container">
             <div class="row" style="justify-content: center;">
                 <!-- Gallery -->
-                <form action="{{ str_contains(request()->path(), 'create') ? route('site.advertising.store', app()->getLocale()) : route('site.advertising.updateAdvertising', app()->getLocale()) }}" method="post" id="sp-basic-form" class="row" enctype="multipart/form-data">
+                <form action="{{ str_contains(request()->path(), 'create') ? route('site.advertising.store', app()->getLocale()) : route('site.advertising.updateAdvertising', app()->getLocale()) }}" method="post" id="sp-basic-form" enctype="multipart/form-data">
                     @csrf
-                    <div class="col-12">
-                        <div class="seach_container">
-                            @if (str_contains(request()->path(), 'create'))
-                                <h3 class="text-center">{{request()->get('service' , false) ? __('add_a_service'): __('create_ad_title')}}</h3>
-                            @else
-                                @method('PUT')
-                                <input type="hidden" name="id" value="{{@$advertising->id}}">
-                                <h3 class="text-center">{{request()->get('service' , false) ? __('edit_a_service'): __('edit_ad_title')}}</h3>
-                            @endif
-                            @if((session('status')) == 'unsuccess')
-                                <div class="alert alert-danger mt-3">
-                                    <strong>{{__('un_success_title')}}!</strong> {{__('un_success_alert_title')}}!
-                                </div>
-                            @endif
+                    <div class="seach_container">
+                        @if (str_contains(request()->path(), 'create'))
+                            <h3 class="text-center">{{request()->get('service' , false) ? __('add_a_service'): __('create_ad_title')}}</h3>
+                        @else
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{@$advertising->id}}">
+                            <h3 class="text-center">{{request()->get('service' , false) ? __('edit_a_service'): __('edit_ad_title')}}</h3>
+                        @endif
+                        @if((session('status')) == 'unsuccess')
+                            <div class="alert alert-danger mt-3">
+                                <strong>{{__('un_success_title')}}!</strong> {{__('un_success_alert_title')}}!
+                            </div>
+                        @endif
 
-                            @if (str_contains(request()->path(), 'required_for_rent'))
-                                <input type="hidden" name="advertising_type" value="normal">
-                            @else
-                                @if(env('NORMAL_ADS_FREE' , false) && !str_contains(request()->path(), 'create'))
-                                    @if( in_array("premium",[old('advertising_type',request()->get('type') ) , @$advertising->advertising_type]) )
-                                        <input type="hidden" name="advertising_type" value="premium">
-                                        <p>
-                                            <label>
-                                                {{__('normal_title')}}
-                                                @if($credit['count_normal_advertising'] > 0)
-                                                    <span class="text-success m{{$unSide}}-1">{{$credit['count_normal_advertising']}} {{__('remaining_title')}}</span>
-                                                @else
-                                                    <span class="text-danger m{{$unSide}}-1">{{$credit['count_normal_advertising']}} {{__('remaining_title')}}</span>
-                                                @endif
-                                            </label>
-                                        </p>
-                                        <a href="{{ route('Main.buyPackage',app()->getLocale()) }}" class="w-100 px-2 mb-3 primary-color links">
-                                            {{__('buy_package_title')}}
-                                        </a>
-                                        <hr>
-                                    @else
-                                        <input type="hidden" name="advertising_type" value="normal">
-                                    @endif
-                                @else
-                                    {{--                            <p class="uppercase m-2 fw-500">{{__('ADVERTISE_TYPE')}}</p>--}}
+                        @if (str_contains(request()->path(), 'required_for_rent'))
+                            <input type="hidden" name="advertising_type" value="normal">
+                        @else
+                            @if(env('NORMAL_ADS_FREE' , false) && !str_contains(request()->path(), 'create'))
+                                @if( in_array("premium",[old('advertising_type',request()->get('type') ) , @$advertising->advertising_type]) )
+                                    <input type="hidden" name="advertising_type" value="premium">
                                     <p>
-                                        <input type="radio" style="width: auto;" id="normal" name="advertising_type" value="normal"
-                                            {{ old('advertising_type',
-                                                    @$advertising->advertising_type) =="normal" ? 'checked' : '' }}>
-                                        <label for="normal">
+                                        <label>
                                             {{__('normal_title')}}
                                             @if($credit['count_normal_advertising'] > 0)
                                                 <span class="text-success m{{$unSide}}-1">{{$credit['count_normal_advertising']}} {{__('remaining_title')}}</span>
@@ -133,30 +110,52 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                             @endif
                                         </label>
                                     </p>
-                                    <p>
-                                        <input type="radio" style="width: auto;" id="premium" name="advertising_type" value="premium"
-                                            {{ ((old('advertising_type', @$advertising->advertising_type ) || request()->type) =="premium") && $credit['count_premium_advertising'] > 0 ? 'checked' : '' }}
-                                            {{ (!@$advertising && $credit['count_premium_advertising'] <= 0)
-                                            ? 'disabled' : '' }}>
-                                        <label for="premium">
-                                            {{__('premium_short')}}
-                                            @if($credit['count_premium_advertising'] > 0)
-                                                <span class="text-success m{{$unSide}}-1">{{$credit['count_premium_advertising']}} {{__('remaining_title')}}</span>
-                                            @else
-                                                <span class="text-danger m{{$unSide}}-1">{{$credit['count_premium_advertising']}} {{__('remaining_title')}}</span>
-                                            @endif
-                                        </label>
-                                    </p>
-                                    <div class="my-2 p-0">
-                                        @error('advertising_type')
-                                        <div class="invalid-feedback warn-color d-inline-block">
-                                                        <strong>{{ $message }}</strong>
-                                                    </div>
-                                        @enderror
-                                    </div>
+                                    <a href="{{ route('Main.buyPackage',app()->getLocale()) }}" class="w-100 px-2 mb-3 primary-color links">
+                                        {{__('buy_package_title')}}
+                                    </a>
                                     <hr>
+                                @else
+                                    <input type="hidden" name="advertising_type" value="normal">
                                 @endif
+                            @else
+                                {{--                            <p class="uppercase m-2 fw-500">{{__('ADVERTISE_TYPE')}}</p>--}}
+                                <p>
+                                    <input type="radio" style="width: auto;" id="normal" name="advertising_type" value="normal"
+                                        {{ old('advertising_type',
+                                                @$advertising->advertising_type) =="normal" ? 'checked' : '' }}>
+                                    <label for="normal">
+                                        {{__('normal_title')}}
+                                        @if($credit['count_normal_advertising'] > 0)
+                                            <span class="text-success m{{$unSide}}-1">{{$credit['count_normal_advertising']}} {{__('remaining_title')}}</span>
+                                        @else
+                                            <span class="text-danger m{{$unSide}}-1">{{$credit['count_normal_advertising']}} {{__('remaining_title')}}</span>
+                                        @endif
+                                    </label>
+                                </p>
+                                <p>
+                                    <input type="radio" style="width: auto;" id="premium" name="advertising_type" value="premium"
+                                        {{ ((old('advertising_type', @$advertising->advertising_type ) || request()->type) =="premium") && $credit['count_premium_advertising'] > 0 ? 'checked' : '' }}
+                                        {{ (!@$advertising && $credit['count_premium_advertising'] <= 0)
+                                        ? 'disabled' : '' }}>
+                                    <label for="premium">
+                                        {{__('premium_short')}}
+                                        @if($credit['count_premium_advertising'] > 0)
+                                            <span class="text-success m{{$unSide}}-1">{{$credit['count_premium_advertising']}} {{__('remaining_title')}}</span>
+                                        @else
+                                            <span class="text-danger m{{$unSide}}-1">{{$credit['count_premium_advertising']}} {{__('remaining_title')}}</span>
+                                        @endif
+                                    </label>
+                                </p>
+                                <div class="my-2 p-0">
+                                    @error('advertising_type')
+                                    <div class="invalid-feedback warn-color d-inline-block">
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                    @enderror
+                                </div>
+                                <hr>
                             @endif
+                        @endif
 {{--                            @if (str_contains(request()->path(), 'required_for_rent'))--}}
 {{--                                {{ __('request_a_property') }}--}}
 {{--                            @endif--}}
@@ -177,228 +176,227 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 {{--                                </div>--}}
 
 
-                            @if(request()->get('service' , false))
-                                <div class="mb-20">
-                                    <label>{{__('title')}}</label>
-                                    <input type="text" dir="rtl" class="input text-right"  name="title_en"
-                                           placeholder="{{__('title')}}"
-                                           value="{{ old('title_en', @$advertising->title_en ?? "")}}"
-                                           required>
-                                    @error('title_en')
-                                        <div class="invalid-feedback warn-color d-inline-block">
-                                                <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
-                                </div>
-                            @endif
+                        @if(request()->get('service' , false))
                             <div class="mb-20">
-                                <label> {{__('phone_number_title')}}</label>
-                                <input type="text" dir="ltr" class="input text-left"  name="phone_number"
-                                       placeholder="{{__('phone_number_title')}}"
-                                       value="{{ old('phone_number', @$advertising->phone_number ?? auth()->user()->mobile)}}"
-                                       @if( ! request()->get('service' , false)) readonly @endif required>
-                                @error('phone_number')
+                                <label>{{__('title')}}</label>
+                                <input type="text" dir="rtl" class="input text-right"  name="title_en"
+                                       placeholder="{{__('title')}}"
+                                       value="{{ old('title_en', @$advertising->title_en ?? "")}}"
+                                       required>
+                                @error('title_en')
                                     <div class="invalid-feedback warn-color d-inline-block">
                                             <strong>{{ $message }}</strong>
                                     </div>
                                 @enderror
                             </div>
-
-                            @if(request()->get('service' , false))
-                                <div class="mb-20">
-                                    <label> {{__('city')}}</label>
-                                    <select name="city_id">
-                                        @foreach($cities as $city)
-                                            @php $isOld = old('city_id', @$advertising->city_id) == $city->id;
-                                            @endphp
-                                            <option {{ $isOld ? 'selected' : '' }} value="{{ $city->id }}">
-                                                {{ app()->getLocale() == 'en' ? $city->name_en : $city->name_ar }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('city_id')
-                                    <div class="invalid-feedback warn-color d-inline-block">
+                        @endif
+                        <div class="mb-20">
+                            <label> {{__('phone_number_title')}}</label>
+                            <input type="text" dir="ltr" class="input text-left"  name="phone_number"
+                                   placeholder="{{__('phone_number_title')}}"
+                                   value="{{ old('phone_number', @$advertising->phone_number ?? auth()->user()->mobile)}}"
+                                   @if( ! request()->get('service' , false)) readonly @endif required>
+                            @error('phone_number')
+                                <div class="invalid-feedback warn-color d-inline-block">
                                         <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
                                 </div>
-                                <input type="hidden" name="purpose" value="service">
-                                <input type="hidden" name="service" value="1">
-                            @else
-                                <div class="mb-20">
-                                    <label> {{__('Area')}}</label>
-                                    <select name="area_id" id="area_id" class="select2"></select>
-                                    @error('area_id')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                <script type="module">
-                                    $(document).ready(function() {
-                                        fill_area_list(null)
-                                    })
-                                    function fill_area_list (city_id) {
-                                        $.post('/{{app()->getLocale()}}/areas', {city_id}, function(data, status){
-                                            console.log({status,data})
-                                            if (status === 'success') {
-                                                $('#area_id').empty()
-                                                $('#area_id').val('')
-                                                let oldId = '{{ old('area_id', @$advertising->area_id ? @$advertising->area_id : 'null') }}';
-                                                let selectedArea = null;
-                                                $.each(data, function(index, area) {
-                                                    selectedArea = oldId && area.id == oldId ? area.name_{{app()->getLocale()}} : selectedArea;
-                                                    let selectedAttr = oldId && area.id == oldId ? `selected` : null;
-                                                    let option = `<option  ${selectedAttr} value="${area.id}">${area.name_{{app()->getLocale()}}}</option>`
-                                                    $('#area_id').append(option);
-                                                });
-                                            } else
-                                                console.error('error in get areas with ajax request')
-                                        })
-                                    }
-                                </script>
+                            @enderror
+                        </div>
 
-
-                                <div class="mb-20">
-                                    <label> {{__('property_type')}}</label>
-                                    <select name="venue_type">
-                                        @foreach($types as $type)
-                                            @php $isOld = old('venue_type', @$advertising->venue_type) == $type->id;
-                                            @endphp
-                                            <option {{ $isOld ? 'selected' : '' }} value="{{@$type->id}}">
-                                                {{ app()->getLocale() == 'en' ? $type->title_en : $type->title_ar }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('venue_type')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                @if (str_contains(request()->path(), 'required_for_rent'))
-                                    <input type="hidden" name="purpose" value="required_for_rent">
-                                @else
-                                    <div class="mb-20">
-                                        <label> {{__('purpose')}}</label>
-                                        <select name="purpose">
-                                            @foreach($purposes as $purpose)
-                                                @php $isOld = old('purpose', @$advertising->purpose) == $purpose;
-                                                @endphp
-                                                <option {{ $isOld ? 'selected' : '' }} value="{{@$purpose}}">
-                                                    {{ __($purpose) }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('purpose')
-                                        <div class="invalid-feedback warn-color d-inline-block">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                        @enderror
-                                    </div>
-                                @endif
-                            @endif
+                        @if(request()->get('service' , false))
                             <div class="mb-20">
-                                <label>{{__('price_title')}}
-                                    ({{__('kd_title')}})</label>
-                                <input type="text" dir="ltr" class="input text-left"  name="price"
-                                       placeholder="{{__('price_title')}} ({{__('kd_title')}})"
-                                       value="{{ old('price', @$advertising->price)}}">
-                                @error('price')
+                                <label> {{__('city')}}</label>
+                                <select name="city_id">
+                                    @foreach($cities as $city)
+                                        @php $isOld = old('city_id', @$advertising->city_id) == $city->id;
+                                        @endphp
+                                        <option {{ $isOld ? 'selected' : '' }} value="{{ $city->id }}">
+                                            {{ app()->getLocale() == 'en' ? $city->name_en : $city->name_ar }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('city_id')
                                 <div class="invalid-feedback warn-color d-inline-block">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
+                            <input type="hidden" name="purpose" value="service">
+                            <input type="hidden" name="service" value="1">
+                        @else
                             <div class="mb-20">
-                                <label>{{__('description_title')}}</label>
-                                <textarea class="input" name="description" rows="5">{{ old('description', @$advertising->description) }}</textarea>
-                                @error('description')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
+                                <label style="display: block"> {{__('Area')}}</label>
+                                <select name="area_id" id="area_id" class="select2"></select>
+                                @error('area_id')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
+                                </div>
                                 @enderror
                             </div>
+                            <script type="module">
+                                $(document).ready(function() {
+                                    fill_area_list(null)
+                                })
+                                function fill_area_list (city_id) {
+                                    $.post('/{{app()->getLocale()}}/areas', {city_id}, function(data, status){
+                                        console.log({status,data})
+                                        if (status === 'success') {
+                                            $('#area_id').empty()
+                                            $('#area_id').val('')
+                                            let oldId = '{{ old('area_id', @$advertising->area_id ? @$advertising->area_id : 'null') }}';
+                                            let selectedArea = null;
+                                            $.each(data, function(index, area) {
+                                                selectedArea = oldId && area.id == oldId ? area.name_{{app()->getLocale()}} : selectedArea;
+                                                let selectedAttr = oldId && area.id == oldId ? `selected` : null;
+                                                let option = `<option  ${selectedAttr} value="${area.id}">${area.name_{{app()->getLocale()}}}</option>`
+                                                $('#area_id').append(option);
+                                            });
+                                        } else
+                                            console.error('error in get areas with ajax request')
+                                    })
+                                }
+                            </script>
 
-                            @if (!str_contains(request()->path(), 'required_for_rent'))
-                                @if(env('CAN_UPLOAD_VIDEO_IN_SITE' , true))
-                                    @if( old('video' , @$advertising->video) )
-                                        <input style="visibility: hidden;position: absolute;" name="video"
-                                               type="text" value="{{ old('video' , @$advertising->video) }}"
-                                               accept="video/mp4,video/x-m4v,video/*" id="input_video"
-                                               onchange="$('#name_video').val($(this).val().replace(/C:\\fakepath\\/i, ''))">
-                                        <input class="custom-file-input"
-                                               onclick="$('#input_video').attr('type' , 'file').trigger('click');"
-                                               id="name_video" lang="es" style="margin: -40px 0 0 0;"
-                                               value="{{ old('video' , @$advertising->video) }}">
-                                        <label class="green_btn mt-10" for="name_video">{{__('video')}} &nbsp;<i class="fa fa-file-video-o fa-lg"></i></label>
-                                    @else
-                                        <input style="visibility: hidden;position: absolute;" name="video"
-                                               type="file" accept="video/mp4,video/x-m4v,video/*" id="input_video"
-                                               onchange="$('#name_video').val($(this).val().replace(/C:\\fakepath\\/i, ''))">
-                                        <input class="custom-file-input"
-                                               onclick="$('#input_video').attr('type' , 'file').trigger('click');"
-                                               id="name_video" lang="es" style="margin: -40px 0 0 0;">
-                                        <label class="green_btn mt-10" for="name_video">{{__('video')}} &nbsp;<i class="fa fa-file-video-o fa-lg"></i></label>
-                                    @endif
-                                    @error('video')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                @else
-                                    @if( old('video' , @$advertising->video) )
-                                        <input name="video" type="hidden" value="{{ old('video' , @$advertising->video) }}">
-                                    @endif
-                                @endif
 
-                                <div class="col-xs-12 p-2">
-                                    <input type="file" class="green_btn my-pond mt-10"
-                                           id="customFileImages"
-                                           name="other_image[]"
-                                           lang="es" style="margin: -40px 0 0 0;"
-                                           accept=".png,.jpg,.jpeg">
-                                    @error('other_image.*')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                    @error('other_image')
-                                    <div class="invalid-feedback warn-color d-inline-block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
+                            <div class="mb-20">
+                                <label> {{__('property_type')}}</label>
+                                <select name="venue_type">
+                                    @foreach($types as $type)
+                                        @php $isOld = old('venue_type', @$advertising->venue_type) == $type->id;
+                                        @endphp
+                                        <option {{ $isOld ? 'selected' : '' }} value="{{@$type->id}}">
+                                            {{ app()->getLocale() == 'en' ? $type->title_en : $type->title_ar }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('venue_type')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
                                 </div>
-                            @endif
-
-
-                            @if(env('CAN_CHOOSE_LOCATION_IN_SITE' , true) and ! request()->get('service' , false))
-                                <div class="col-xs-12 p-2">
-                                    <div id="map" style="width: 100%;height: 250px;border-radius: 5px;"></div>
-                                    <input type="hidden" id="location_lat" name="location_lat">
-                                    <input type="hidden" id="location_long" name="location_long">
-                                </div>
+                                @enderror
+                            </div>
+                            @if (str_contains(request()->path(), 'required_for_rent'))
+                                <input type="hidden" name="purpose" value="required_for_rent">
                             @else
-                                @if( old('location_lat', @$advertising->location_lat) )
-                                    <input type="hidden" value="{{ old('location_lat', @$advertising->location_lat) }}"
-                                           name="location_lat">
-                                    <input type="hidden"
-                                           value="{{ old('location_long', @$advertising->location_long) }}"
-                                           name="location_long">
+                                <div class="mb-20">
+                                    <label> {{__('purpose')}}</label>
+                                    <select name="purpose">
+                                        @foreach($purposes as $purpose)
+                                            @php $isOld = old('purpose', @$advertising->purpose) == $purpose;
+                                            @endphp
+                                            <option {{ $isOld ? 'selected' : '' }} value="{{@$purpose}}">
+                                                {{ __($purpose) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('purpose')
+                                    <div class="invalid-feedback warn-color d-inline-block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                            @endif
+                        @endif
+                        <div class="mb-20">
+                            <label>{{__('price_title')}}
+                                ({{__('kd_title')}})</label>
+                            <input type="text" dir="ltr" class="input text-left"  name="price"
+                                   placeholder="{{__('price_title')}} ({{__('kd_title')}})"
+                                   value="{{ old('price', @$advertising->price)}}">
+                            @error('price')
+                            <div class="invalid-feedback warn-color d-inline-block">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-20">
+                            <label>{{__('description_title')}}</label>
+                            <textarea class="input" name="description" rows="5">{{ old('description', @$advertising->description) }}</textarea>
+                            @error('description')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
+                        </div>
+
+                        @if (!str_contains(request()->path(), 'required_for_rent'))
+                            @if(env('CAN_UPLOAD_VIDEO_IN_SITE' , true))
+                                @if( old('video' , @$advertising->video) )
+                                    <input style="visibility: hidden;position: absolute;" name="video"
+                                           type="text" value="{{ old('video' , @$advertising->video) }}"
+                                           accept="video/mp4,video/x-m4v,video/*" id="input_video"
+                                           onchange="$('#name_video').val($(this).val().replace(/C:\\fakepath\\/i, ''))">
+                                    <input class="custom-file-input"
+                                           onclick="$('#input_video').attr('type' , 'file').trigger('click');"
+                                           id="name_video" lang="es" style="margin: -40px 0 0 0;"
+                                           value="{{ old('video' , @$advertising->video) }}">
+                                    <label class="green_btn mt-10" for="name_video">{{__('video')}} &nbsp;<i class="fa fa-file-video-o fa-lg"></i></label>
+                                @else
+                                    <input style="visibility: hidden;position: absolute;" name="video"
+                                           type="file" accept="video/mp4,video/x-m4v,video/*" id="input_video"
+                                           onchange="$('#name_video').val($(this).val().replace(/C:\\fakepath\\/i, ''))">
+                                    <input class="custom-file-input"
+                                           onclick="$('#input_video').attr('type' , 'file').trigger('click');"
+                                           id="name_video" lang="es" style="margin: -40px 0 0 0;">
+                                    <label class="green_btn mt-10" for="name_video">{{__('video')}} &nbsp;<i class="fa fa-file-video-o fa-lg"></i></label>
+                                @endif
+                                @error('video')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            @else
+                                @if( old('video' , @$advertising->video) )
+                                    <input name="video" type="hidden" value="{{ old('video' , @$advertising->video) }}">
                                 @endif
                             @endif
-                            <div class="text-center mt-30"><button class="btn btn_lg"><strong>
-                                        @if (str_contains(request()->path(), 'create'))
-                                            @if(request()->get('service' , false))
-                                                {{ __('upload_your_service') }}
-                                            @else
-                                                {{ __('upload_your_ad') }}
-                                            @endif
+
+                            <div class="col-xs-12 p-2">
+                                <input type="file" class="green_btn my-pond mt-10"
+                                       id="customFileImages"
+                                       name="other_image[]"
+                                       lang="es" style="margin: -40px 0 0 0;"
+                                       accept=".png,.jpg,.jpeg">
+                                @error('other_image.*')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                                @error('other_image')
+                                <div class="invalid-feedback warn-color d-inline-block">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                        @endif
+
+
+                        @if(env('CAN_CHOOSE_LOCATION_IN_SITE' , true) and ! request()->get('service' , false))
+                            <div class="col-xs-12 p-2">
+                                <div id="map" style="width: 100%;height: 250px;border-radius: 5px;"></div>
+                                <input type="hidden" id="location_lat" name="location_lat">
+                                <input type="hidden" id="location_long" name="location_long">
+                            </div>
+                        @else
+                            @if( old('location_lat', @$advertising->location_lat) )
+                                <input type="hidden" value="{{ old('location_lat', @$advertising->location_lat) }}"
+                                       name="location_lat">
+                                <input type="hidden"
+                                       value="{{ old('location_long', @$advertising->location_long) }}"
+                                       name="location_long">
+                            @endif
+                        @endif
+                        <div class="text-center mt-30"><button class="btn btn_lg"><strong>
+                                    @if (str_contains(request()->path(), 'create'))
+                                        @if(request()->get('service' , false))
+                                            {{ __('upload_your_service') }}
                                         @else
-                                            {{__('edit_title')}}
+                                            {{ __('upload_your_ad') }}
                                         @endif
-                                    </strong></button></div>
-                        </div>
+                                    @else
+                                        {{__('edit_title')}}
+                                    @endif
+                                </strong></button></div>
                     </div>
                 </form>
             </div>
