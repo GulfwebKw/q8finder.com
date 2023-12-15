@@ -161,9 +161,9 @@ small {
 
 .featured {
     position: absolute;
-    background: #2196f3;
+    background: #E44A67;
     top: 5px;
-    right: 20px;
+    right: -20px !important;
     padding: 4px 12px;
     font-size: 18px;
 }
@@ -260,7 +260,11 @@ select, input, textarea {
 .desk_hide {
     display: none;
 }
-
+.navbar-type-advertise{
+    margin-right:30%;
+    margin-left:30%;
+    background-color: #ffffff;
+}
 .navbar-type-advertise ul li {
     padding: 10px 20px;
 }
@@ -564,6 +568,14 @@ i {
 
 /*Mobile Devices.*/
 @media all and (max-width: 480px) and (min-width: 320px) {
+    .h-300{
+        max-height: 300px !important;
+    }
+    .navbar-type-advertise{
+        margin-right:0;
+        margin-left:0;
+        background-color: #ffffff;
+    }
     .card_details {
         margin: 0 0 20px 0;
     }
@@ -588,8 +600,8 @@ i {
     }
 
     .advertise-bg-white {
-        background-color: #252d3a  !important;
-        color: #ffffff !important;
+        background-color: #ffffff  !important;
+        color: #252d3a !important;
         border-radius: 10px 30px 30px 10px;
         height: calc(100% - 1rem);
     }
@@ -597,7 +609,7 @@ i {
         padding: 0;
     }
     .advertise-bg-white a:link, .advertise-bg-white a:visited, .advertise-bg-white a:active{
-        color: #ffffff !important;
+        color: #252d3a !important;
     }
     .navbar-type-advertise ul li {
         /*padding: 10px 5px;*/

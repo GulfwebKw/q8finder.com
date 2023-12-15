@@ -11,11 +11,11 @@
     padding:40px 0 0 0;
     position: fixed; /* Fixed position */
     top: 0;
-    right: -290px; /* Sidebar initial position. "right" for right positioned menu */
+    right: -350px; /* Sidebar initial position. "right" for right positioned menu */
     height: 100%;
     z-index:999;
     transition: 0.5s; /* CSS transition speed */
-    width: 250px;
+    width: 350px;
     font:18px 'Noto Kufi Arabic', sans-serif;
 	}
 
