@@ -66,7 +66,22 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
 </div>
 <div class="table-responsive border-0 w-100 mt-3">
     <table class="table table-striped table-borderless sm:compress" aria-label="Dessert calories">
-        
+        <thead>
+            <tr class="mdc-data-table__header-row">
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important"
+                    style="padding-{{$edge}}: 0 !important;">{{ __('image') }}</th>
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important mob_hide">
+                    {{__('ADVERTISE_TYPE')}}</th>
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important">{{ __('location_title') }}
+                </th>
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important display-table-control">{{
+                    __('price') }}</th>
+                <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important display-table-control mob_hide">{{
+                    __('action_title') }}</th>
+                {{-- <th class="mdc-data-table__header-cell uppercase sm:px-2 text-center-important">{{
+                    __('auto_extend_title') }}</th> --}}
+            </tr>
+        </thead>
         <tbody class="mdc-data-table__content">
 
             <style>
@@ -96,16 +111,16 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         </div>
                     </a>
                 </td>
-                
+                <td class="mdc-data-table__cell sm:px-2 text-center-important mob_hide">
+                    @if($ad->advertising_type == "premium")
+                    {{__('premium_short')}}
+                    @elseif($ad->advertising_type == "normal")
+                    {{__('normal_title')}}
+                    @endif
+                </td>
                 <td class="mdc-data-table__cell sm:px-2 text-center-important text-xs text-truncate">
                     {{ app()->getLocale()==='en'? optional($ad->city)->name_en . " - " . optional($ad->area)->name_en: optional($ad->city)->name_ar . "
                     - " . optional($ad->area)->name_ar }}
-                    <p>
-                    <span style="margin:3px;">{{ $ad->price }} {{ __('kd_title') }}</span>
-                    <span style="margin:3px;"><i class="fa fa-clock-o"></i>{{$ad->created_at}}</span>
-                    <span style="margin:3px;"><i class="fa fa-eye"></i>{{$ad->view_count}}</span>
-                    </p>
-                    <p>{!! $ad->description??'' !!}</p>
 
                     <div class="desk_hide">
                         <form id="delete-form-{{$ad->id}}" class="d-inline-block" method="post"
@@ -138,7 +153,9 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         @endif
                     </div>
                 </td>
-
+                <td class="text-center">
+                    {{ $ad->price }} {{ __('kd_title') }}
+                </td>
                 <td class="mdc-data-table__cell sm:px-2 text-center-important display-table-control mob_hide">
                     <form id="delete-form-{{$ad->id}}" class="d-inline-block" method="post"
                         action="{{ route('site.advertising.destroy',app()->getLocale()) }}">

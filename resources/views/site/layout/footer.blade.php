@@ -18,5 +18,6 @@
 {{--        </div>--}}
 {{--    </section>--}}
 {{--</footer>--}}
-
+@if(\Request::route()->getName()!='site.advertising.create') 
 <a href="#"><div id="stop" class="scrollTop"><i class="fa fa-arrow-up fa-lg m-0" aria-hidden="true"></i></div></a>
+@endif

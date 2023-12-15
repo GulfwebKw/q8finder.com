@@ -31,23 +31,27 @@
                     </p>
 
 
-                    <p class="f-13 text-gray advertise-description" :dir="isArabic(ad.description) ? 'rtl' : 'ltr'"
+                    <p class="f-13 advertise-description" :dir="isArabic(ad.description) ? 'rtl' : 'ltr'"
                        x-text="truncate(ad.description, 40)"></p>
 
 
                     <div class="mob_hide">
                         <p class="text-left">
-                            {{--                        <strong class="second-time">--}}
-                            {{--                            <img src="{{ asset('assets/img/time.png') }}" alt=""--}}
-                            {{--                                                                   style="width: 20px; height: auto;"--}}
-                            {{--                                                                   class="f-left mr-10"> <span--}}
-                            {{--                                x-text="ad.created_at"></span>--}}
-                            {{--                        </strong>--}}
-                            <strong class="text-right text-blue w-100" dir="ltr" style="display: block; padding-right: 1rem!important; font-size: large;color: var(--blue) !important;">
-                                {{ __('kd_title') }} <span
+                                                   <strong class="second-time" style="width:48%;float:left;font-size:12px !important;bottom:0;">
+                                                       <span
+                                                          x-text="ad.created_at"></span> <img src="{{ asset('assets/img/time.png') }}" alt=""
+                                                                                            style="width: 15px; height: auto;"
+                                                                                             class="mr-10">
+                                                 </strong>
+                            
+                            <strong class="text-right text-blue" dir="ltr" style="width:50%;float:right;display: block; padding-right: 1rem!important; font-size: 14px;color: var(--blue) !important;bottom:0;">
+                               <img src="{{ asset('assets/img/money.png') }}" alt=""
+                                                                                            style="width: 15px; height: auto;"
+                                                                                            > {{ __('kd_title') }} <span
                                     x-text="ad.price"></span>
                             </strong>
                         </p>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="desk_hide">
                         <p class="text-left">

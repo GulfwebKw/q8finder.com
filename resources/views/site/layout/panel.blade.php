@@ -1,4 +1,4 @@
-@extends('site.layout.master')
+@extends('site.layout.masteruser')
 @section('content')
     <section class="mt-20">
         <div class="container">

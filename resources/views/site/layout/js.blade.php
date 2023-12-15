@@ -1,8 +1,9 @@
 
-{{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>--}}
 
 <script type="text/javascript">
     $(document).ready(function() {
+
+    
         var scrollTop = $(".scrollTop");
         $(window).scroll(function() {
             var topPos = $(this).scrollTop();

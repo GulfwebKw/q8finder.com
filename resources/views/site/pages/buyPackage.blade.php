@@ -1,6 +1,14 @@
-@extends('site.layout.master')
+@extends('site.layout.masteruser')
 @section('title' , __('buy_package_title'))
 @section('content')
+<style>
+@media all and (max-width: 480px) and (min-width: 320px) {
+.fordesktop,.logo{
+display:none !important;
+}
+.butitle h1{text-align:center !important;margin-top:-60px !important;}
+}
+</style>
 
 @if((session('status')) == 'success')
 <div class="alert alert-success">
@@ -40,7 +48,9 @@
 <main>
     <div class="px-3">
         <div class="container">
-            <div class="my-5">
+            <div class="my-1">
+                <div class="butitle text-center"><h1 class="uppercase">{{__('buy_package_title')}}</h1></div>
+
                 @if ( ! env('NORMAL_ADS_FREE' , false) )
                 <div class="col-xs-11 col-sm-7 col-md-4 my-1 mx-auto mb-2">
                     <div class="card card-subscribe card-buy companies-card rounded" style="background-color: #06090c70;border-color: #fff;">
@@ -60,7 +70,6 @@
                 @endif
 
                 <div class="column text-center middle-xs text-center">
-                    <h1 class="uppercase">{{__('buy_package_title')}}</h1>
                     <p class="text-muted fw-500">{{__('subscribetoourpackagenote')}}</p>
                 </div>
 
@@ -81,7 +90,8 @@
                                         <div class="w-100">
                                             @csrf
                                             <div class="mdc-card pricing-card text-center border-accent p-0 h-100" style="border-color: #fff;">
-                                                <div class="bg-accent pricing-header px-2 py-4 rounded" style="background-color: #06090c70;">
+                                                <div class="bg-accent pricing-header px-2 py-4 rounded row" style="background-color: #06090c70;">
+                                                    <div class="col-4">
                                                     <h1 class="fs-sm-20">@if( $static->old_price > $static->price ) <small>
                                                             <span class="del opacity-70">{{ $static->old_price }} </span>
                                                         </small> @endif {{$static->price }}<small> {{__('kd_title')}}
@@ -89,20 +99,24 @@
                                                             {{-- {{ app()->getLocale()=="en" ? $static->title_en :
                                                             $static->title_ar }} --}}
                                                             {{-- /{{ $static->count_day }} {{__('days')}} --}}</small></h1>
-                                                    <p class="desc mb-2">
+                                                    </div>
+                                                    <div class="col-8">
+                                                    <p class="desc ">
                                                         @if(app()->getLocale()=="en"){{$static->title_en}}@else{{$static->title_ar}}@endif
                                                     </p>
-                                                </div>
-                                                <div class="px-2 ad-plan-bottom">
                                                     <p class=" add-plan-description">
                                                         @if(app()->getLocale()=="en"){{$static->description_en}}@else{{$static->description_ar}}@endif
                                                     </p>
+                                                    </div>
+                                                </div>
+                                                <div class="px-2 ad-plan-bottom row">
+                                                    
 
-                                                    <div>
+                                                    <div class="col-6">
                                                         <input type="hidden" class="form-control" name="payment_type"
                                                             value="CBKPay">
 
-                                                        <label>{{__('noofads')}}</label>
+                                                        
                                                         <input type="number" dir="ltr" class="input text-left "
                                                                value="1"  name="count" min="1" id="{{ "
                                                                 static-num-" . $static->id }}" required
@@ -111,7 +125,7 @@
                                                     <input type="hidden" name="type" value="static">
                                                     <input type="hidden" name="package_id" value="{{ $static->id }}">
 
-                                                    <div class="w-100 desk_hide">
+                                                    <div class="w-100 desk_hide col-6">
                                                         <button type="submit" class="btn btn_lg d-block">{{__('buy')}} </button>
                                                     </div>
                                                 </div>
@@ -172,7 +186,7 @@
                                                 <input type="hidden" name="type" value="normal">
                                                 <input type="hidden" name="package_id" value="{{ $normal->id }}">
                                                 <button type="submit"  class="btn btn_lg d-block"
-                                                        style="max-width: 100px;">{{__('buy')}}</button>
+                                                        style="max-width: 100%;">{{__('buy')}}</button>
                                             </form>
                                         </div>
                                     </div>

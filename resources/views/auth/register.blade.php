@@ -9,13 +9,19 @@
                 <div class="col-lg-3 mob_hide">&nbsp;</div>
 
                 <div class="col-12 col-lg-6">
+                  <div class="mdc-tab-bar-wrapper centered pricing-tabs">
+                        <ul  class="d-flex justify-content-center nav" role="tablist" style="column-gap: 20px;">
+                            <li role="presentation" style="cursor: pointer;" class="menuTab active p-3 rounded" onclick="$('.tab-pane').hide();$('#payasyougo').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_in')}}</li>
+                            <li role="presentation" style="cursor: pointer;" class="menuTab p-3 rounded" onclick="$('.tab-pane').hide();$('#longtermsubscribe').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_up')}}</li>
+                        </ul>
+                    <div class="tab-content">
+                   <!--start register-->
+                   <div class="tab-pane" style="display: none;" id="longtermsubscribe">
                     <div class="seach_container">
-                        <h3 class="text-center">{{__('sign_up_title')}}</h3>
-                        <p class="text-center"><a href="{{ route('login',app()->getLocale()) }}"> {{__('already_registered')}}
-                                {{__('sign_in')}} </a></p>
-                        <hr>
+                        
                         <form method="post" id="register-form" action="{{ route('register',app()->getLocale()) }}">
                             @csrf
+                            {{--
                             @if ( old('codeValidation' , false ) )
                                 <input type="hidden" name="type-usage" value="individual">
                                 <input type="hidden" name="name" value="{{ old("name") }}">
@@ -48,6 +54,9 @@
                                     <button class="btn btn_lg" type="submit">{{__('sign_up_title')}}</button>
                                 </div>
                             @else
+
+                            --}}
+
                                 <div class="mb-20">
                                     <label><i class="fa fa-phone fa-lg"></i> {{__('phone_number_title')}}</label>
                                     <input type="text" name="mobile" value="{{ old('mobile') }}" dir="ltr" class="input form-control @error('mobile') is-invalid @enderror" placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
@@ -89,10 +98,62 @@
                                 </div>
 
                                 <div class="text-center"><button class="btn btn_lg" type="submit"><strong>{{__('sign_up_title')}}</strong></button></div>
-                            @endif
+                            {{-- @endif --}}
                         </form>
                     </div>
+                    </div>
+                    <!--end register-->
+                    <!--start login -->
+                    <div class="tab-pane" style="display:block;" id="payasyougo">
+                    <div class="seach_container">
+                        
+                        @if(session('status'))
+                            <div class="alert alert-success">
+                                <strong>{{ __('success_title') }}!</strong> {{session('status')}}!
+                            </div>
+                        @endif
+                        <form method="post" action="{{ route('login',app()->getLocale()) }}">
+                            @csrf
+                        <div class="mb-20">
+                            <label><i class="fa fa-phone fa-lg"></i> {{__('phone_number_title')}}</label>
+                            <input type="text" dir="ltr" class="input form-control  @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autofocus placeholder="{{__('phone_number_title')}}" onblur="this.placeholder='{{__('phone_number_title')}}'" onclick="this.placeholder=''">
+                            @error('mobile')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-20">
+                            <label><i class="fa fa-lock fa-lg"></i> {{__('password')}}</label>
+                            <input type="password" dir="ltr" name="password" required class="input form-control @error('password') is-invalid @enderror" placeholder="{{__('password')}}" onblur="this.placeholder=''" onclick="this.placeholder='{{__('password')}}'">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-20">
+                            <input type="checkbox" style="width: auto;" class="ml-10"  name="remember"   id="remember" {{ old('remember') ? 'checked' : '' }}> <label for="remember">{{ __('remember_me') }}</label>
+                        </div>
+
+                        <div class="text-center"><button type="submit" class="btn btn_lg"><strong>{{__('login')}}</strong></button></div>
+
+                        </form>
+                        <hr>
+
+                        <p><a href="{{ route('password.request',app()->getLocale()) }}"><i class="fa fa-key fa-lg"></i> {{__('forgot_password')}}</a></p>
+                    </div>
+                     </div>
+                    <!--end login -->
+                    </div> 
+                  </div> 
+
+
                 </div>
+
+
             </div>
         </div>
     </section>

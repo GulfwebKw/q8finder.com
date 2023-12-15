@@ -53,7 +53,8 @@
                 <div class="col-5 col-lg-6 my_search" >
                     <select x-init="
       $($refs.selectField).select2({
-  templateResult: formatState
+  templateResult: formatState,
+  placeholder: 'المنطقة'
 }).on('change', function (e) {
         selectedCity = Array.from(e.target.options).filter(option => option.selected).map(option => option.value);
       });
@@ -73,7 +74,7 @@
                 </div>
                 <div class="col-3 col-lg-4 my_search">
                     <select class="input select_input" x-model="selectedType">
-                        <option @click="selectedTypeObject = null;">{{__('all')}}</option>
+                        <option @click="selectedTypeObject = null;">{{__('property_type')}}</option>
                         <template x-for="typeItem in types">
                             <option :value="typeItem.id" x-text="typeItem.title_{{ app()->getLocale() }}"></option>
                         </template>

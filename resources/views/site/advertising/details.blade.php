@@ -51,6 +51,17 @@
 @endsection
 
 @section('content')
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <span class="arrow" onclick="rightArrowClicked()">&rarr;</span>
+  <p class="modal-content"><img  id="img01">
+  </p>
+  <span class="left-arrow" onclick="leftArrowClicked()">&larr;</span>
+  <div id="caption"></div>
+</div>
+
+
     <section class="mt-20">
         <div class="container">
             <div class="row">
@@ -76,9 +87,9 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img alt="slide image" src="{{$advertising->main_image ? asset($advertising->main_image) : route('image.noimagebig', '') }}"
+                                <img  alt="slide image" src="{{$advertising->main_image ? asset($advertising->main_image) : route('image.noimagebig', '') }}"
                                      onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';"
-                                     class="d-block w-100">
+                                     class="d-block w-100 h-300">
                             </div>
                             @if($advertising->video)
                                 <div class="carousel-item">
@@ -90,7 +101,7 @@
                             @foreach((array) optional(json_decode($advertising->other_image))->other_image as
                             $other_image)
                                 <div class="carousel-item">
-                                    <img alt="slide image" src="{{  $other_image ? asset($other_image) : route('image.noimage', '')}}"  class="d-block w-100" onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';" >
+                                    <img  alt="slide image" src="{{  $other_image ? asset($other_image) : route('image.noimage', '')}}"  class="d-block w-100 h-300" onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';" >
                                 </div>
                             @endforeach
                         </div>
@@ -132,11 +143,41 @@
                     </div>
 
                     @if($isPhoneVisible)
-                    <p class="text-center mt-20" dir="rtl"><i class="fa fa-calendar fa-lg"></i> {{$advertising->created_at}}  <i class="fa fa-eye fa-lg"></i> {{$advertising->view_count}} <span id="share"  style="cursor: pointer"><i class="fa fa-share-square-o fa-lg"></i></span></p>
+                    <p class="text-center mt-20" dir="rtl"><i class="fa fa-calendar fa-lg"></i> {{$advertising->created_at}}  <i class="fa fa-eye fa-lg"></i> {{$advertising->view_count}} <a href="javascript:void(0);" id="shareBtn"  style="cursor: pointer"><i class="fa fa-share-square-o fa-lg"></i></span></p>
                     <hr>
+                    <p>
                     <button class="phone incrementClick" data-href="tel:{{$tel}}"><i class="fa fa-phone fa-lg"></i> {{str_replace('+965', '', $tel)}}</button>
                     <button class="whatsapp incrementClick" data-href="http://wa.me/{{str_replace('+', '', $tel)}}"><i class="fa fa-whatsapp fa-2x"></i></button>
-
+                    </p>
+                     <div class="clearfix"></div>
+<br>
+                    <p>
+                     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-facebook fa-2x"></i></a>
+                     <a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-twitter fa-2x"></i></a>
+                     <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;width:30px;"><i class="fa fa-pinterest fa-2x"></i></a>
+                        
+                    </p>
+                    <!--modal -->
+                    <div class="modal fade" id="sharemodale" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sharemodaleLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                        </div>
+                        <div class="modal-body">
+                        <p> 
+                            <div class="row">
+                                <div class="col-3"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-facebook fa-2x"></i></a></div>
+                                <div class="col-3"><a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-twitter fa-2x"></i></a></div>
+                                <div class="col-3"><a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;"><i class="fa fa-pinterest fa-2x"></i></a></div>
+                            </div>
+                            </p>
+                        </div>
+                       
+                        </div>
+                    </div>
+                    </div>
+                    <!--end modal -->
                     <div class="clearfix"></div>
                     <hr>
                     @endif
@@ -211,7 +252,12 @@
             };
         </script>
     @endif
-    <script type="text/javascript">
+
+    
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  {{--
+  <script type="text/javascript">
         document.querySelector('#share').addEventListener('click', function () {
             if (navigator.share) {
                 navigator.share({
@@ -227,6 +273,7 @@
             }
         });
     </script>
+    --}}
     <script type="module">
         $('.incrementClick').click(function(event) {
             event.preventDefault();
@@ -242,7 +289,46 @@
             });
         });
 
+        $("#sharemodalex").click(function(){
+        $("#sharemodale").modal('show');
+        });
+
     </script>
+    
+    
+    <script>
+		document.querySelector('#shareBtn')
+		.addEventListener('click', event => {
+
+			// Fallback, Tries to use API only
+			// if navigator.share function is
+			// available
+			if (navigator.share) {
+				navigator.share({
+
+					// Title that occurs over
+					// web share dialog
+					title: 'Q8-Finder',
+                   // text:'Q8finder details',
+					// URL to share
+					url: '{{url("/")}}'
+				}).then(() => {
+					console.log('Thanks for sharing!');
+				}).catch(err => {
+
+					// Handle errors, if occurred
+					console.log(
+					"Error while using Web share API:");
+					console.log(err);
+				});
+			} else {
+
+				// Alerts user if API not available 
+				alert("Browser doesn't support this API !");
+			}
+		})
+	</script>
+	
 @endsection
 
 @section('head')

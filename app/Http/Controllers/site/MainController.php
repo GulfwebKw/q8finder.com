@@ -229,7 +229,7 @@ class MainController extends Controller
         $ads = Advertising::where('user_id', $user->id)->withoutGlobalScope('notService')
             ->whereDate('expire_at', '>=', Carbon::now())
             ->orderBy('id', 'desc')->paginate(20);
-
+        
         return view('site.pages.myAds', [
             'balance' => $record,
             'ads' => $ads,

@@ -40,7 +40,9 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
     @hasSection('disableFloatAdButton')
     @else
         <!-- Add Advertisement -->
+        @if (\Request::route()->getName()!='companies' && \Request::route()->getName()!='site.advertising.create') 
         <a href="{{ request()->is(app()->getLocale().'/required')  ? route('site.advertising.createRFR', app()->getLocale()) : route('site.advertising.create', app()->getLocale())}}" class="add_float"><i class="fa fa-plus fa-2x"></i></a>
+        @endif
     @endif
 
 	@include('site.layout.header')
@@ -50,15 +52,18 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
         @hasSection('disableHeaderNavbar')
 
         @else
-        <section>
+        @if (\Request::route()->getName()!='companies') 
+        <section class="fordesktop">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 text-center">
                         <nav class="navbar-type-advertise">
                             <ul>
+                                @if (\Request::route()->getName()!='companies') 
                                 <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'rent') class="active" @endif>
                                     <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'rent']) }}">{{__('rent')}}</a>
                                 </li>
+                                @endif
                                 <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'sell') class="active" @endif>
                                     <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'sell']) }}">{{__('sell')}}</a>
                                 </li>
@@ -78,6 +83,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
                     </div>
                 </div>
         </section>
+        @endif
         @endif
 	    @include('site.sections.fail-flash')
 

@@ -68,11 +68,13 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+     
+
         $this->registerValidation();
         try {
 
             DB::beginTransaction();
-            if ($request->has('resend')) {
+            /* if ($request->has('resend')) {
                 $otp = rand(10000, 99999);
                 $this->sendOtp($otp, $request->mobile);
                 $request->merge(['code' => $otp, 'codeValidation' => Hash::make($otp . " : Erfan Ebrahimi : " . $request->mobile)]);
@@ -85,7 +87,7 @@ class RegisterController extends Controller
                 return redirect()->back()->withInput()->with('success', __('validate_send'));
             } elseif (!Hash::check($request->code . " : Erfan Ebrahimi : " . $request->mobile, $request->codeValidation))
                 return redirect()->back()->withInput()->withErrors(__('invalidOTP'));
-
+ */
 
             $request->merge(['type_usage' => 'individual']);
             $package = Package::where("title_en", "gift credit")->where('is_enable', 1)->where('user_type', $request->type_usage)->first();
