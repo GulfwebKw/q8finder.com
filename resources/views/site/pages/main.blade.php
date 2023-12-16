@@ -79,9 +79,13 @@
                 display: none;
             }
             .listAdvertise .advertise .ad_img{
-                border-radius: 10px 25px 10px 10px;
-                margin: 5px;
-                width: calc(100% - 10px);
+                /*border-radius: 10px 25px 10px 10px;*/
+                /*margin: 5px;*/
+                /*width: calc(100% - 10px);*/
+                border-radius: 10px 25px 0 0;
+                margin: 0;
+                margin-bottom: 10px;
+                width: 100%;
             }
             .listAdvertise .advertise .advertise-header-time{
                 display: none;
