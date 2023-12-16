@@ -25,7 +25,7 @@
                         </strong>
                     </p>
                     <p class="desk_hide">
-                        <img src="{{ asset('assets/img/home.png') }}" alt="" style="width: 25px;">
+                        🏡
                         <span
                             x-text="ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}} "></span>
                     </p>
@@ -43,11 +43,9 @@
                                                                                             style="width: 15px; height: auto;"
                                                                                              class="mr-10">
                                                  </strong>
-                            
+
                             <strong class="text-right text-blue" dir="ltr" style="width:50%;float:right;display: block; padding-right: 1rem!important; font-size: 14px;color: var(--blue) !important;bottom:0;">
-                               <img src="{{ asset('assets/img/money.png') }}" alt=""
-                                                                                            style="width: 15px; height: auto;"
-                                                                                            > {{ __('kd_title') }} <span
+                                💰 {{ __('kd_title') }} <span
                                     x-text="ad.price"></span>
                             </strong>
                         </p>
@@ -56,9 +54,7 @@
                     <div class="desk_hide">
                         <p class="text-left">
                             <strong dir="ltr" style="display: block;">
-                                <img src="{{ asset('assets/img/money.png') }}" alt=""
-                                     style="width: 25px; height: auto;"
-                                     class="mr-10">{{ __('kd_title') }} <span
+                                <span class="mr-10">💰</span>{{ __('kd_title') }} <span
                                     x-text="ad.price"></span>
                             </strong>
                             <strong class="text-blue" dir="ltr" style="display: block;">
