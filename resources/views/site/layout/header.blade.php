@@ -65,6 +65,7 @@
                                     @endif
                                     <li><a href="{{ route('companies', app()->getLocale()) }}"><i class="fa fa-briefcase fa-lg"></i> {{__('companies')}}</a></li>
                                     <li><a href="{{ route('Main.index', ['locale' => app()->getLocale()]) }}"><i class="fa fa-building-o fa-lg"></i> عقارات الكويت</a></li>
+                                    <li><a href="{{ route('Message.create', ['locale' => app()->getLocale()]) }}"><i class="fa fa-envelope-o fa-lg"></i>{{__('contact_title')}}</a></li>
                                     @if(auth()->check())
                                         <li>
                                             <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">

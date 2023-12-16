@@ -43,14 +43,17 @@
                         </div>
                     </div> --}}
                     <div class="col-12">
-                        <div class="column text-center middle-xs text-center">
+                        <div class="column text-center middle-xs text-center mt-20">
                             <h3 class="primary-color py-1">{{__('contact_us')}}</h3>
-                            <i class="material-icons mat-icon-lg primary-color">public</i>
                             <div>
                                 {!! $data[app()->getLocale()] !!}
                             </div>
+                            <div>
                             <a class="text-muted fw-500" href="mailto:{{ $email }}">{{ $email }}</a>
+                            </div>
+                            <div>
                             <a class="text-muted fw-500" href="{{ $website }}">{{ $website }}</a>
+                            </div>
 
                             @include('site.sections.socials')
                         </div>
