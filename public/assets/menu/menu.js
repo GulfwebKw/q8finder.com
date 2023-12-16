@@ -13,14 +13,14 @@ slide_open_btn.click(function(e){
 slide_close_btn.click(function(e){
     e.preventDefault();
     slide_bar.css({"right": "-"+ slidebar_width + "px"}); //change to "right" for right positioned menu
-    overlay.css({"opacity":"0", "width":"0"});  
+    overlay.css({"opacity":"0", "width":"0"});
 });
 
-$('body').on('click touchstart', function(){
+$('.side-menu-overlay').on('click touchstart', function(){
     //e.preventDefault();
     if( parseInt( overlay.css('opacity') ) == "1" ){
     slide_bar.css({"right": "-"+ slidebar_width + "px"}); //change to "right" for right positioned menu
-    overlay.css({"opacity":"0", "width":"0"}); 
+    overlay.css({"opacity":"0", "width":"0"});
     }
 });
 }//]]>

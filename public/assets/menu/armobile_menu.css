@@ -6,7 +6,7 @@
 .slide-menu-open{color:#092b4c;}
 
 .side-menu-wrapper { /* style menu wrapper */
-    overflow: hidden;
+    overflow: auto;
     background: rgba(29,35,47,.95);
     padding:40px 0 0 0;
     position: fixed; /* Fixed position */
@@ -15,7 +15,7 @@
     height: 100%;
     z-index:999;
     transition: 0.5s; /* CSS transition speed */
-    width: 350px;
+    width: calc(100% - 50px);
     font:18px 'Noto Kufi Arabic', sans-serif;
 	}
 
@@ -72,7 +72,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.7);
