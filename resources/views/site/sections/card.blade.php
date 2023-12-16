@@ -3,14 +3,14 @@
         <div class=" advertise-bg-white mb-3">
 
             {{--        <!-- created time in desktop -->--}}
-            {{--        <p class="text-center advertise-header-time"  x-show="ad.purpose != 'required_for_rent'" x-text="ad.created_at"></p>--}}
+            {{--        <p class="text-center advertise-header-time"  x-show="ad.purpose != 'required_for_rent1'" x-text="ad.created_at"></p>--}}
 
             <div class="featured text-white" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>
             <div
                 @click="share( (ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}}) ,ad.description , ad.share_link.{{ app()->getLocale()  }} );"
                 class="share desk_hide"><i class="fa fa-share"></i></div>
             <a :href="ad.share_link.{{ app()->getLocale()  }}">
-                <img x-show="ad.purpose != 'required_for_rent'"
+                <img x-show="ad.purpose != 'required_for_rent1'"
                     :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'"
                     alt="ad" class="ad_img"
                     onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';">

@@ -94,7 +94,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                             </div>
                         @endif
 
-                        @if (str_contains(request()->path(), 'required_for_rent'))
+                        @if (str_contains(request()->path(), 'required_for_rent1'))
                             <input type="hidden" name="advertising_type" value="normal">
                         @else
                             @if(env('NORMAL_ADS_FREE' , false) && !str_contains(request()->path(), 'create'))
@@ -156,7 +156,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                 <hr>
                             @endif
                         @endif
-{{--                            @if (str_contains(request()->path(), 'required_for_rent'))--}}
+{{--                            @if (str_contains(request()->path(), 'required_for_rent1'))--}}
 {{--                                {{ __('request_a_property') }}--}}
 {{--                            @endif--}}
 
@@ -275,7 +275,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                 </div>
                                 @enderror
                             </div>
-                            @if (str_contains(request()->path(), 'required_for_rent'))
+                            @if (str_contains(request()->path(), 'required_for_rent1'))
                                 <input type="hidden" name="purpose" value="required_for_rent">
                             @else
                                 <div class="mb-20">
@@ -319,7 +319,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                             @enderror
                         </div>
 
-                        @if (!str_contains(request()->path(), 'required_for_rent'))
+                        @if (!str_contains(request()->path(), 'required_for_rent1'))
                             @if(env('CAN_UPLOAD_VIDEO_IN_SITE' , true))
                                 @if( old('video' , @$advertising->video) )
                                     <input style="visibility: hidden;position: absolute;" name="video"
@@ -457,7 +457,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
 </script>
 @endif
 
-@if (!str_contains(request()->path(), 'required_for_rent'))
+@if (!str_contains(request()->path(), 'required_for_rent1'))
 <!-- include FilePond library -->
 <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
 

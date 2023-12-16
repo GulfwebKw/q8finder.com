@@ -66,7 +66,7 @@
         <div class="container">
             <div class="row">
                 <!-- Gallery -->
-                @if ($advertising->purpose !== 'required_for_rent')
+                @if ($advertising->purpose !== 'required_for_rent1')
                 <div class="col-12 col-lg-7">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -155,7 +155,7 @@
                      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-facebook fa-2x"></i></a>
                      <a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-twitter fa-2x"></i></a>
                      <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;width:30px;"><i class="fa fa-pinterest fa-2x"></i></a>
-                        
+
                     </p>
                     <!--modal -->
                     <div class="modal fade" id="sharemodale" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sharemodaleLabel" aria-hidden="true">
@@ -165,7 +165,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                         </div>
                         <div class="modal-body">
-                        <p> 
+                        <p>
                             <div class="row">
                                 <div class="col-3"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-facebook fa-2x"></i></a></div>
                                 <div class="col-3"><a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-twitter fa-2x"></i></a></div>
@@ -173,7 +173,7 @@
                             </div>
                             </p>
                         </div>
-                       
+
                         </div>
                     </div>
                     </div>
@@ -223,7 +223,7 @@
                         <span class="back_btn"><a href="javascript:history.back()"><img src="{{ asset('assets/img/back.png') }}" alt=""></a></span>
                     </div>
                 </div>
-                @if ($advertising->purpose !== 'required_for_rent')
+                @if ($advertising->purpose !== 'required_for_rent1')
                 <div class="col-12 col-lg-12 mt-30 mb-50">
                     <h6>{{ __('Description') }}</h6>
                     <hr>
@@ -253,7 +253,7 @@
         </script>
     @endif
 
-    
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   {{--
@@ -294,8 +294,8 @@
         });
 
     </script>
-    
-    
+
+
     <script>
 		document.querySelector('#shareBtn')
 		.addEventListener('click', event => {
@@ -323,12 +323,12 @@
 				});
 			} else {
 
-				// Alerts user if API not available 
+				// Alerts user if API not available
 				alert("Browser doesn't support this API !");
 			}
 		})
 	</script>
-	
+
 @endsection
 
 @section('head')

@@ -129,7 +129,7 @@ class AdvertisingController extends Controller
         $cities = City::orderBy('name_en')->get();
         $types = VenueType::where('type', 'Residential')->orderBy('title_en')->get();
         $purposes = [
-            'rent', 'sell', 'exchange','commercial'
+            'rent', 'sell', 'exchange','commercial' , 'required_for_rent'
         ];
         $credit = $this->getCreditUser(auth()->id());
         if ($credit === [])
