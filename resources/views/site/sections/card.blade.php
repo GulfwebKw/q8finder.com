@@ -35,7 +35,9 @@
                        x-text="truncate(ad.description, 40)"></p>
 
 
-                    <div class="mob_hide">
+                    <div class="mob_hide" style="height: 25px;">
+                    </div>
+                    <div class="mob_hide" style="bottom: 20px;position: absolute;width: calc(100% - 50px);">
                         <p class="text-left">
                                                    <strong class="second-time" style="width:48%;float:left;font-size:12px !important;bottom:0;">
                                                        <span
