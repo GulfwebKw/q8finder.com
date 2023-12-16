@@ -100,12 +100,12 @@
                             @if($company->is_premium )
                                 <img alt="First Place" src="{{ asset('asset/images/First-Place.png?v1') }}" style="width: 50px;display: flex;justify-content: space-around;align-items: center;top: 0;position: absolute;left: 0; border-radius: 50%;">
                             @endif
-                            <div class="card-body p-1.5 sm:p-1.5">
+                            <div class="card-body p-1.5 sm:p-1.5" style="display: inline-flex;">
                                 <div class="row ">
                                     <div class="col-md-4 col-md-4 col-sm-4 col-xs-4" style="width:40% !important;">
                                         <a href="{{route('companies.info', [app()->getLocale(),$company->company_phone,$company->company_name])}}"
                                            class="company-img h-100 mx-auto d-flex justify-content-center align-items-center">
-                                            <img 
+                                            <img
                                                  src="{{ is_file(public_path($company->image_profile)) ? asset($company->image_profile) : route('image.noimagebig', '') }}"
                                                  alt="agent-image"
                                                  class="d-block rounded" style="width:110px !important;height:120px !important;">
