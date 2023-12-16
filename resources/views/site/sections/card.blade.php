@@ -32,7 +32,7 @@
 
 
                     <p class="f-13 advertise-description" :dir="isArabic(ad.description) ? 'rtl' : 'ltr'"
-                       x-text="truncate(ad.description, 40)"></p>
+                       x-text="truncate(ad.description, 40)" style="color: gray;text-align: justify;"></p>
 
 
                     <div class="mob_hide" style="height: 25px;">
