@@ -102,7 +102,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
             </style>
             @foreach($ads as $ad)
             <tr class="mdc-data-table__row"  @if($ad->expire_at) style="background-color:rgba(0,0,0,0.1);" @endif>
-                <td class="mdc-data-table__cell sm:px-2 text-center-important" style="padding-{{$edge}}: 0 !important;">
+                <td class="mdc-data-table__cell sm:px-2 text-center-important" style="padding-{{$edge}}: 0 !important;min-width: 72px;">
                     <a href="{{route('site.ad.detail', [app()->getLocale(), $ad->hash_number])}}">
 
                         <div class="{{ $ad->advertising_type == "normal" ? "" : 'image-box' }}" style="position: relative; ">

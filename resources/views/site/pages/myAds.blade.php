@@ -66,7 +66,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
 </div>
 <div class="table-responsive border-0 w-100 mt-3">
     <table class="table table-striped table-borderless sm:compress" aria-label="Dessert calories">
-        
+
         <tbody class="mdc-data-table__content">
 
             <style>
@@ -87,7 +87,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
             </style>
             @foreach($ads as $ad)
             <tr class="mdc-data-table__row" @if($ad->expire_at) style="background-color:rgba(0,0,0,0.1);" @endif>
-                <td class="mdc-data-table__cell sm:px-2 text-center-important" style="padding-{{$edge}}: 0 !important;">
+                <td class="mdc-data-table__cell sm:px-2 text-center-important" style="padding-{{$edge}}: 0 !important;min-width: 72px;">
                     <a href="{{route('site.ad.detail', [app()->getLocale(), $ad->hash_number])}}">
 
                         <div class="{{ $ad->advertising_type == "normal" ? "" : 'image-box' }}" style="position: relative; ">
@@ -96,7 +96,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                         </div>
                     </a>
                 </td>
-                
+
                 <td class="mdc-data-table__cell sm:px-2 text-center-important text-xs text-truncate">
                     {{ app()->getLocale()==='en'? optional($ad->city)->name_en . " - " . optional($ad->area)->name_en: optional($ad->city)->name_ar . "
                     - " . optional($ad->area)->name_ar }}

@@ -85,7 +85,7 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="{{ $indexImage }}"></li>
                             @endforeach
                         </ol>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner gallery">
                             <div class="carousel-item active">
                                 <img  alt="slide image" src="{{$advertising->main_image ? asset($advertising->main_image) : route('image.noimagebig', '') }}"
                                      onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';"
@@ -252,10 +252,10 @@
             };
         </script>
     @endif
-
+    <div id="fullpage" onclick="this.style.display='none';"><div></div></div>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="{{ asset('assets/js/common_scripts.js') }}"></script>
   {{--
   <script type="text/javascript">
         document.querySelector('#share').addEventListener('click', function () {
@@ -297,6 +297,18 @@
 
 
     <script>
+        function getPics() {} //just for this demo
+        const imgs = document.querySelectorAll('.gallery img');
+        const fullPage = document.querySelector('#fullpage');
+        const fullPageDiv = document.querySelector('#fullpage div');
+
+        imgs.forEach(img => {
+            img.addEventListener('click', function() {
+                fullPageDiv.style.backgroundImage = 'url(' + img.src + ')';
+                fullPage.style.display = 'block';
+            });
+        });
+
 		document.querySelector('#shareBtn')
 		.addEventListener('click', event => {
 
@@ -334,4 +346,44 @@
 @section('head')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <style>
+        #fullpage {
+            display: none;
+            position: fixed;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        #fullpage:before, #fullpage:after {
+            position: absolute;
+            content: '';
+            background: #ffffff;
+            display: block;
+            width: 30px;
+            height: 2px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            left: 4px;
+            top: 20px;
+            margin: auto;
+        }
+        #fullpage:after {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        #fullpage div {
+            background-size: contain;
+            background-repeat: no-repeat no-repeat;
+            background-position: center center;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 @endsection
