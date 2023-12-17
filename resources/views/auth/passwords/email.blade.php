@@ -1,6 +1,6 @@
 @extends('site.layout.master')
 @section('title' , __('forgot_password'))
-@section('disableHeaderNavbar' , 'yes')
+
 @section('content')
 
     <section class="mt-30">

@@ -40,7 +40,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
     @hasSection('disableFloatAdButton')
     @else
         <!-- Add Advertisement -->
-        @if (\Request::route()->getName()!='companies' && \Request::route()->getName()!='site.advertising.create') 
+        @if (\Request::route()->getName()!='companies' && \Request::route()->getName()!='site.advertising.create')
         <a href="{{ request()->is(app()->getLocale().'/required')  ? route('site.advertising.createRFR', app()->getLocale()) : route('site.advertising.create', app()->getLocale())}}" class="add_float"><i class="fa fa-plus fa-2x"></i></a>
         @endif
     @endif
@@ -49,17 +49,14 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
 
 {{--    <a href="#" class="menu-close">--}}
     <main>
-        @hasSection('disableHeaderNavbar')
-
-        @else
-        @if (\Request::route()->getName()!='companies') 
+        @hasSection('enableHeaderNavbar')
         <section class="fordesktop">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
                         <nav class="navbar-type-advertise">
                             <ul>
-                                @if (\Request::route()->getName()!='companies') 
+                                @if (\Request::route()->getName()!='companies')
                                 <li @if (Route::currentRouteName() == 'Main.index' and request()->get('type' , false) == 'rent') class="active" @endif>
                                     <a href="{{ route('Main.index', ['locale' => app()->getLocale() , 'type' => 'rent']) }}">{{__('rent')}}</a>
                                 </li>
@@ -83,7 +80,7 @@ $keywords = @app()->view->getSections()['meta_keywords'] ? strip_tags(app()->vie
                     </div>
                 </div>
         </section>
-        @endif
+        @else
         @endif
 	    @include('site.sections.fail-flash')
 

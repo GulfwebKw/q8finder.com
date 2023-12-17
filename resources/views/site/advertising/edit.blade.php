@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title' , __('edit_ad_title'))
-@section('disableHeaderNavbar' , 'yes')
+
 
 
 @section('js')

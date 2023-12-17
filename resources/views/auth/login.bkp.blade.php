@@ -1,6 +1,6 @@
 @extends('site.layout.master')
 @section('title' , __('login_title'))
-@section('disableHeaderNavbar' , 'yes')
+
 @section('content')
     <section class="mt-30">
         <div class="container">

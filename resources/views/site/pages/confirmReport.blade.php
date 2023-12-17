@@ -1,6 +1,5 @@
 @extends('site.layout.master')
 @section('title' , __('report'))
-@section('disableHeaderNavbar' , 'yes')
 @section('content')
     <section>
         <div class="container">

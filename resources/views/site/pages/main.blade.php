@@ -1,5 +1,5 @@
 @extends('site.layout.master')
-
+@section('enableHeaderNavbar' , 'yes')
 @isset($company)
     @section('title', $company->company_name . ' | ' . $company->company_phone)
 @endisset

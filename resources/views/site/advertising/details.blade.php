@@ -1,5 +1,5 @@
 @extends('site.layout.master')
-@section('disableHeaderNavbar' , 'yes')
+
 
 @php
     function uniord($u) {

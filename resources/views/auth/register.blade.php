@@ -1,6 +1,6 @@
 @extends('site.layout.master')
 @section('title' , __('sign_up_title'))
-@section('disableHeaderNavbar' , 'yes')
+
 @section('content')
     <section class="mt-30">
         <div class="container">
@@ -18,7 +18,7 @@
                    <!--start register-->
                    <div class="tab-pane" style="display: none;" id="longtermsubscribe">
                     <div class="seach_container">
-                        
+
                         <form method="post" id="register-form" action="{{ route('register',app()->getLocale()) }}">
                             @csrf
                             {{--
@@ -106,7 +106,7 @@
                     <!--start login -->
                     <div class="tab-pane" style="display:block;" id="payasyougo">
                     <div class="seach_container">
-                        
+
                         @if(session('status'))
                             <div class="alert alert-success">
                                 <strong>{{ __('success_title') }}!</strong> {{session('status')}}!
@@ -147,8 +147,8 @@
                     </div>
                      </div>
                     <!--end login -->
-                    </div> 
-                  </div> 
+                    </div>
+                  </div>
 
 
                 </div>

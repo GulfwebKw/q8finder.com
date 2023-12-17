@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('disableHeaderNavbar' , 'yes')
+
 @section('content')
     <section class="mt-30">
         <div class="container">
