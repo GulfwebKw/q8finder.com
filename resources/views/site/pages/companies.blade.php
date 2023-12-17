@@ -65,11 +65,7 @@
                                             </div>
                                         @endif
                                     @else
-                                        <div class="col-md-4 col-xs-5 p-0">
-                                            <img src="{{route('image.upgrade-company', '')}}" alt="upgrade"
-                                                 class="w-100 d-block rounded">
-                                        </div>
-                                        <div class="col-md-8 col-xs-7 text-center p-0 pl-3 company-card-body">
+                                        <div class="col-md-12 col-xs-12 text-center p-0 pl-3 company-card-body">
                                             <p class="mb-3 fw-600">{{__('upgrade_account')}}</p>
 
                                             <a href="{{ route('companies.new', app()->getLocale()) }}"
