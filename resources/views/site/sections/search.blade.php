@@ -94,7 +94,7 @@
                 </div>
             </div>
 
-            @if (request()->is(app()->getLocale().'/required'))
+            @if (request()->is(app()->getLocale().'/required') and false)
                 <div class="row">
                     <div class="col-12">
                         <a href="{{route('site.advertising.createRFR', app()->getLocale())}}"
