@@ -112,19 +112,19 @@
 
 
                                 <div class="w-100 text-center mt-4">
-                                    <button type="submit" class="mdc-button mdc-button--raised">
-                                        <span class="mdc-button__ripple"></span>
-                                        <span class="mdc-button__label">{{__('register_company')}}</span>
+                                    <button type="submit" class="btn btn_lg">
+                                        <strong>{{__('register_company')}}</strong>
                                     </button>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-3 p-3 text-center">
-                                <img src="{{ asset('/asset/images/logo-placeholder-image.png') }}" alt="company-image"
-                                     class="mw-200 d-block mx-auto" id="uploadedImage">
                                 <input type="file" id="inputImage" name="image" accept="image/*" class="d-none">
-                                <label class="mdc-button mdc-button--raised mw-100 mt-3" for="inputImage">
-                                    <span class="mdc-button__ripple"></span>
-                                    <span class="mdc-button__label">{{__('upload_logo')}}</span>
+                                <label for="inputImage">
+                                    <img src="{{ asset('/assets/images/logo-placeholder-image.png') }}" alt="company-image"
+                                         class="mw-200 d-block mx-auto" style="cursor: pointer" id="uploadedImage">
+                                    <div class="btn btn_lg mw-100 mt-3">
+                                        <strong>{{__('upload_logo')}}</strong>
+                                    </div>
                                 </label>
                                 <br>
                                 @error('image')

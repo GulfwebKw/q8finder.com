@@ -66,7 +66,7 @@
                                         @endif
                                     @else
                                         <div class="col-md-12 col-xs-12 text-center p-0 pl-3 company-card-body">
-                                            <p class="mb-3 fw-600">{{__('upgrade_account')}}</p>
+{{--                                            <p class="mb-3 fw-600">{{__('upgrade_account')}}</p>--}}
 
                                             <a href="{{ route('companies.new', app()->getLocale()) }}"
                                                class="mdc-button mdc-button--raised w-90 mx-auto sm-button-mobile">
