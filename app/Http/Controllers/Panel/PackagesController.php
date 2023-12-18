@@ -16,7 +16,6 @@ class PackagesController extends Controller
             'title_en' => ['required'],
             'title_ar' => ['required'],
             'price' => ['required','numeric'],
-            'price' => ['nullable','numeric'],
             'count_day' => ['required','numeric'],
             'count_show_day' => ['required','numeric'],
             'count_advertising' => ['required','numeric'],
@@ -63,6 +62,9 @@ class PackagesController extends Controller
     {
         $package = Package::find($userId);
         $this->createValidator($request->all())->validate();
+
+        if ( $package->title_en == "gift credit" )
+            $request->merge(['title_en' => 'gift credit' , 'title_ar' => 'gift credit']);
 
         $package->update(['title_en'=>$request->title_en,'title_ar'=>$request->title_ar,'description_en'=>$request->description_en,'description_ar'=>$request->description_ar,'note_en'=>$request->note_en,'note_ar'=>$request->note_ar,'price'=>$request->price,'old_price'=>$request->old_price,'count_day'=>$request->count_day,'count_show_day'=>$request->count_show_day,'count_advertising'=>$request->count_advertising,'count_premium'=>$request->count_premium,'user_type'=>$request->user_type]);
 
