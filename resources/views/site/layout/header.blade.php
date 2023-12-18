@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="top_line">
+    <div class="top_line mobile_fixed_top">
         <div class="container">
             <div class="row">
                 <div class="col-4 col-lg-6">
@@ -92,5 +92,6 @@
             </div>
         </div>
     </div>
+    <div class="desk_hide" style="height: 80px;" ></div>
 </header>
 
