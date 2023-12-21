@@ -83,6 +83,11 @@
                                             @csrf
                                             <div class="mdc-card pricing-card text-center border-accent p-0 h-100" style="border-color: #fff;">
                                                 <div class="bg-accent pricing-header px-2 py-4 rounded row" style="background-color: #06090c70;">
+                                                    @if($static->count_premium > 0 )
+                                                        <div class="featured text-white" style="right: -0.5rem !important;top: 0.5rem !important;padding: 0 10px;font-size: small;">
+                                                            {{ __('premium_short') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="col-4">
                                                     <h1 class="fs-sm-20">@if( $static->old_price > $static->price ) <small>
                                                             <span class="del opacity-70">{{ $static->old_price }} </span>
@@ -154,6 +159,11 @@
                                 <div class="col-xs-12 col-sm-6 col-md-3 p-2">
                                     <div class="mdc-card pricing-card text-center border-accent p-0 h-100">
                                         <div class="bg-accent pricing-header px-2 py-4 rounded" style="background-color: #06090c70;">
+                                            @if($normal->count_premium > 0 )
+                                                <div class="featured text-white" style="right: 0.5rem !important;top: 0.5rem !important;padding: 0 10px;font-size: small;">
+                                                    {{ __('premium_short') }}
+                                                </div>
+                                            @endif
                                             <h1 class="fs-sm-20"> @if( $normal->old_price > $normal->price ) <small> <span
                                                         class="del opacity-70">{{ $normal->old_price }} </span></small>
                                                 @endif {{ $normal->price }}<small> {{__('kd_title')}}
