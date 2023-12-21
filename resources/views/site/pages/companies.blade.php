@@ -44,10 +44,10 @@
                         @php $cardMessage = __('already_have_package'); @endphp --}}
                     @endif
                     <div class="col-xs-11 col-sm-7 col-md-5 my-1 mx-auto my-3">
-                        <div class="card card-subscribe card-buy shadow companies-card rounded">
-                            <div class="card-body p-1">
-                                <div class="row">
-                                    @isset($cardMessage)
+                        @isset($cardMessage)
+                            <div class="card card-subscribe card-buy shadow companies-card rounded">
+                                <div class="card-body p-1">
+                                    <div class="row">
                                         <div class="{{ (\App\Http\Controllers\site\MessageController::getSettingDetails('on_top_price') > 0 && ! auth()->user()->is_premium && auth()->user()->type_usage === 'company') ? 'col-md-6' : 'col-md-12' }} col-xs-12 flex-container text-center">
                                             <p class="fw-600 mx-auto">{!! $cardMessage !!}</p>
                                         </div>
@@ -64,20 +64,28 @@
                                                 </a>
                                             </div>
                                         @endif
-                                    @else
-                                        <div class="col-md-12 col-xs-12 text-center p-0 pl-3 company-card-body">
-{{--                                            <p class="mb-3 fw-600">{{__('upgrade_account')}}</p>--}}
-
-                                            <a href="{{ route('companies.new', app()->getLocale()) }}"
-                                               class="mdc-button mdc-button--raised w-90 mx-auto sm-button-mobile">
-                                                <span class="mdc-button__ripple"></span>
-                                                <span class="mdc-button__label">{{__('do_upgrade')}}</span>
-                                            </a>
-                                        </div>
-                                    @endisset
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <a href="{{ route('companies.new', app()->getLocale()) }}">
+                                <div class="card card-subscribe card-buy shadow companies-card rounded">
+                                    <div class="card-body p-1">
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12 text-center p-0 pl-3 company-card-body">
+                                                <p class="mb-0 fw-600">{{__('upgrade_account')}}</p>
+
+{{--                                                <div href="{{ route('companies.new', app()->getLocale()) }}"--}}
+{{--                                                   class="mdc-button mdc-button--raised w-90 mx-auto sm-button-mobile">--}}
+{{--                                                    <span class="mdc-button__ripple"></span>--}}
+{{--                                                    <span class="mdc-button__label">{{__('do_upgrade')}}</span>--}}
+{{--                                                </div>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endisset
                     </div>
                 </div>
                 {{-- <div class="row">--}}
