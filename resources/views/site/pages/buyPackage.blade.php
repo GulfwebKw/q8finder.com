@@ -1,14 +1,6 @@
 @extends('site.layout.masteruser')
 @section('title' , __('buy_package_title'))
 @section('content')
-<style>
-@media all and (max-width: 480px) and (min-width: 320px) {
-.fordesktop,.logo{
-display:none !important;
-}
-.butitle h1{text-align:center !important;margin-top:-60px !important;}
-}
-</style>
 
 @if((session('status')) == 'success')
 <div class="alert alert-success">
@@ -110,13 +102,13 @@ display:none !important;
                                                     </div>
                                                 </div>
                                                 <div class="px-2 ad-plan-bottom row">
-                                                    
+
 
                                                     <div class="col-6">
                                                         <input type="hidden" class="form-control" name="payment_type"
                                                             value="CBKPay">
 
-                                                        
+
                                                         <input type="number" dir="ltr" class="input text-left "
                                                                value="1"  name="count" min="1" id="{{ "
                                                                 static-num-" . $static->id }}" required
