@@ -7,6 +7,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
+                z-index: 10000;
             }
             .select2-dropdown {
                 position: fixed;
@@ -74,7 +75,8 @@
                 </div>
                 <div class="col-3 col-lg-4 my_search">
                     <select class="input select_input" x-model="selectedType">
-                        <option @click="selectedTypeObject = null;">{{__('property_type')}}</option>
+                        <option value="-2"  @click="selectedTypeObject = null;">{{ __('all') }}</option>
+                        <option value="-1"  @click="selectedTypeObject = null;" disabled selected hidden>{{ __('property_type') }}</option>
                         <template x-for="typeItem in types">
                             <option :value="typeItem.id" x-text="typeItem.title_{{ app()->getLocale() }}"></option>
                         </template>

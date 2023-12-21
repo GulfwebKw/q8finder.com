@@ -102,7 +102,7 @@
             totalPage : 1,
             selectedCity : null,
             selectedCityObject : null,
-            selectedType : null,
+            selectedType : -1,
             selectedTypeObject : null,
             isRequiredPage : {{ isset($required_for_rent) ? 'true' : 'false' }},
             selectedPurpose : '{{ request()->get('type') }}',
@@ -136,7 +136,7 @@
                     },
                     body: JSON.stringify({
                         area_id: this.selectedCity,
-                        venue_type:this.selectedType,
+                        venue_type:( this.selectedType > 0  ? this.selectedType : null),
                         isRequiredPage: this.isRequiredPage,
                         purpose: this.selectedPurpose
                     })
