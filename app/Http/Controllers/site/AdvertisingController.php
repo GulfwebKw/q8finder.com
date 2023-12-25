@@ -361,7 +361,7 @@ class AdvertisingController extends Controller
                 DB::commit();
 
                 //return redirect()->route('Main.myAds', app()->getLocale())->with('status', 'ad_created');
-                return redirect()->route('Main.index', app()->getLocale())->with('status', 'ad_created');
+                return redirect()->to(app()->getLocale())->with('status', 'ad_created');
             }
             return $this->fail(trans("main.insufficient_credit") . ' <a href="/' . app()->getLocale() . '/buypackage" >' . trans("main.buy_a_package") . '</a>');
         } catch (\Exception $exception) {
