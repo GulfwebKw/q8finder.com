@@ -34,8 +34,8 @@ class StoreRequest extends FormRequest
                 'city_id' => 'nullable',
                 'area_id' => 'required|numeric|exists:areas,id',
                 'price' => 'nullable|numeric',
-                'other_image' => 'nullable|array|min:1',
-                'other_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
+                'other_image' => 'required|array|min:1',
+                'other_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
                 //            // 'other_image' => 'nullable|array',
                 //            //   'other_image.*' => 'mimes:jpeg,bmp,png|max:2048',
                 //            'main_image' => 'nullable|mimes:jpeg,bmp,png|max:2048',
@@ -79,10 +79,10 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            'other_image.*' => 'IMAGE',
-            'other_image' => 'IMAGE',
-            'city_id' => 'CITY',
-            'area_id' => 'AREA',
+            'other_image.*' => __('image'),
+            'other_image' => __('image'),
+            'city_id' => __('city'),
+            'area_id' => __('surface'),
         ] ;
     }
 }

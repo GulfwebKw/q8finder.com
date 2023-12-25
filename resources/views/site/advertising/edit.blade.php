@@ -488,7 +488,8 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                     url: ''
                 },
 
-                labelIdle: "{{ __('add_photos')  }} ({{ __('optional')  }}) <i class=\"fa fa-image fa-lg\"></i>"
+                {{--labelIdle: "{{ __('add_photos')  }} ({{ __('optional')  }}) <i class=\"fa fa-image fa-lg\"></i>"--}}
+                labelIdle: "{{ __('add_photos')  }} <i class=\"fa fa-image fa-lg\"></i>"
             });
             // Set allowMultiple property to true
             $('.my-pond').filepond('allowMultiple', true);
