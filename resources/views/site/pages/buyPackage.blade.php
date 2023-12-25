@@ -1,5 +1,6 @@
 @extends('site.layout.masteruser')
 @section('title' , __('buy_package_title'))
+@section('disableFloatAdButton' , true)
 @section('content')
 
 @if((session('status')) == 'success')
