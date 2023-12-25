@@ -122,7 +122,7 @@ $unSide = app()->getLocale() === 'en' ? 'l' : 'r';
                                 <p>
                                     <input type="radio" style="width: auto;" id="normal" name="advertising_type" value="normal"
                                         {{ old('advertising_type',
-                                                @$advertising->advertising_type) =="normal" ? 'checked' : '' }}>
+                                                (@$advertising->advertising_type ?? "normal"  ) ) =="normal" ? 'checked' : '' }}>
                                     <label for="normal">
                                         {{__('normal_title')}}
                                         @if($credit['count_normal_advertising'] > 0)
