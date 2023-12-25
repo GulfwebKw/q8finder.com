@@ -148,7 +148,7 @@
                     <hr>
                     <p>
                     <button class="phone incrementClick" data-href="tel:{{$tel}}"><i class="fa fa-phone fa-lg"></i> {{str_replace('+965', '', $tel)}}</button>
-                    <button class="whatsapp incrementClick" data-href="http://wa.me/{{str_replace('+', '', $tel)}}"><i class="fa fa-whatsapp fa-2x"></i></button>
+                    <button class="whatsapp incrementClick" data-href="https://api.whatsapp.com/send?phone={{str_replace('+', '', $tel)}}&text=السلام+عليكماذا+ممكن+ترسل+تفاصيل+هذا+الإعلان+في+Q8-finder.com++++++++++++++++++++++++++++++++++++++++وشكرا{{ route('site.ad.detail' , ['ar' , $advertising->hash_number]) }}"><i class="fa fa-whatsapp fa-2x"></i></button>
                     </p>
                      <div class="clearfix"></div>
 
