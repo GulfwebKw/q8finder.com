@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col-8 col-lg-12 text-center">
-                    <a href="{{ route('Main.index', ['locale' => app()->getLocale()]) }}"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="logo"></a>
+                    <a href="/"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="logo"></a>
                 </div>
             </div>
         </div>

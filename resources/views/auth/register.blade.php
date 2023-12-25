@@ -11,12 +11,12 @@
                 <div class="col-12 col-lg-6">
                   <div class="mdc-tab-bar-wrapper centered pricing-tabs">
                         <ul  class="d-flex justify-content-center nav" role="tablist" style="column-gap: 20px;">
-                            <li role="presentation" style="cursor: pointer;" class="menuTab active p-3 rounded" onclick="$('.tab-pane').hide();$('#payasyougo').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_in')}}</li>
-                            <li role="presentation" style="cursor: pointer;" class="menuTab p-3 rounded" onclick="$('.tab-pane').hide();$('#longtermsubscribe').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_up')}}</li>
+                            <li role="presentation" style="cursor: pointer;" class="menuTab p-3 rounded" onclick="$('.tab-pane').hide();$('#payasyougo').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_in')}}</li>
+                            <li role="presentation" style="cursor: pointer;" class="menuTab active p-3 rounded" onclick="$('.tab-pane').hide();$('#longtermsubscribe').show();$('.menuTab').removeClass('active');$(this).addClass('active');">{{__('sign_up')}}</li>
                         </ul>
                     <div class="tab-content">
                    <!--start register-->
-                   <div class="tab-pane" style="display: none;" id="longtermsubscribe">
+                   <div class="tab-pane" style="display: block;" id="longtermsubscribe">
                     <div class="seach_container">
 
                         <form method="post" id="register-form" action="{{ route('register',app()->getLocale()) }}">
@@ -104,7 +104,7 @@
                     </div>
                     <!--end register-->
                     <!--start login -->
-                    <div class="tab-pane" style="display:block;" id="payasyougo">
+                    <div class="tab-pane" style="display:none;" id="payasyougo">
                     <div class="seach_container">
 
                         @if(session('status'))

@@ -68,7 +68,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-     
+
 
         $this->registerValidation();
         try {
@@ -137,7 +137,9 @@ class RegisterController extends Controller
             DB::commit();
             // event(new UserRegistered($user));
             Auth::loginUsingId($user->id);
-            return redirect()->route('Main.index', app()->getLocale())->with('controller-success', trans('main.register_success'));
+            return redirect()
+                ->route('Main.index', app()->getLocale());
+//                ->with('controller-success', trans('main.register_success'));
 
         } catch (\Exception $exception) {
             DB::rollback();
