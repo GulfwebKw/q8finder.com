@@ -151,8 +151,8 @@
                     <button class="whatsapp incrementClick" data-href="http://wa.me/{{str_replace('+', '', $tel)}}"><i class="fa fa-whatsapp fa-2x"></i></button>
                     </p>
                      <div class="clearfix"></div>
-<br>
-                    <p>
+
+                    <p class="desk_hide mob_hide" style="display: none !important;">
                      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-facebook fa-2x"></i></a>
                      <a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;width:30px;"><i class="fa fa-twitter fa-2x"></i></a>
                      <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;width:30px;"><i class="fa fa-pinterest fa-2x"></i></a>
