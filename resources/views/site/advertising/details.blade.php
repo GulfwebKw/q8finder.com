@@ -144,7 +144,17 @@
                     </div>
 
                     @if($isPhoneVisible)
-                    <p class="text-center mt-20" dir="rtl"><i class="fa fa-calendar fa-lg"></i> {{$advertising->created_at}}  <i class="fa fa-eye fa-lg"></i> {{$advertising->view_count}} <a href="javascript:void(0);" id="shareBtn"  style="cursor: pointer"><i class="fa fa-share-square-o fa-lg"></i></span></p>
+                    <div class="text-center mt-10" dir="rtl" style="display: flex;justify-content: center;gap: 30px;">
+                        <div>
+                            <i class="fa fa-calendar fa-lg" style="margin-left: 0;"></i> {{$advertising->created_at}}
+                        </div>
+                        <div>
+                            <i class="fa fa-eye fa-lg" style="margin-left: 0;"></i> {{$advertising->view_count}}
+                        </div>
+                        <div id="shareBtn"  style="cursor: pointer">
+                            <i class="fa fa-share-square-o fa-lg"></i>
+                        </div>
+                    </div>
                     <hr>
                     <p>
                     <button class="phone incrementClick" data-href="tel:{{$tel}}"><i class="fa fa-phone fa-lg"></i> {{str_replace('+965', '', $tel)}}</button>
