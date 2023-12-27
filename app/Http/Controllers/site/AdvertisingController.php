@@ -278,7 +278,7 @@ class AdvertisingController extends Controller
             }])->first();
             //            dd(($advertising->advertisingView));
             // if (count($advertising->advertisingView) === 0) {
-            for($i =0; $i < 4; $i++)
+//            for($i =0; $i < 4; $i++)
                 $this->addAdView($advertising, session()->get('user_guest'));
             // }
         } else {
@@ -286,7 +286,7 @@ class AdvertisingController extends Controller
                 $q->Where('guest_ip', session()->get('user_guest'));
             }])->first();
             // if (count($advertising->advertisingView) === 0) {
-            for($i =0; $i < 4; $i++)
+//            for($i =0; $i < 4; $i++)
                 $this->addAdView($advertising, session()->get('user_guest'));
             // }
         }
