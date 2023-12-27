@@ -136,7 +136,7 @@
                 <div class="col-12 col-lg-5">
                     <div class="details_con">
                         <h6 class="text-center text-dark">{{$name}}
-                            @if( $advertising->area ) - {{app()->getLocale() == 'en' ?
+                            @if( $advertising->area and false ) - {{app()->getLocale() == 'en' ?
                                     $advertising->area->name_en : $advertising->area->name_ar}} @endif</h6>
                         @if($advertising->price || $advertising->price == 0)
                             <h5 class="text-center text-dark"><strong> {{number_format($advertising->price , env('NUMFORMAT' , 0 ))}} {{__('kd_title')}}</strong></h5>
