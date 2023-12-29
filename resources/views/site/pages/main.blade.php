@@ -100,7 +100,7 @@
             totalAdvertise : 0,
             page : 1,
             totalPage : 1,
-            selectedCity : null,
+            selectedCity : [],
             selectedCityObject : null,
             selectedType : -1,
             selectedTypeObject : null,
@@ -135,7 +135,7 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        area_id: this.selectedCity,
+                        area_id: this.selectedCity.includes('-2') ? [] : this.selectedCity,
                         venue_type:( this.selectedType > 0  ? this.selectedType : null),
                         isRequiredPage: this.isRequiredPage,
                         purpose: this.selectedPurpose

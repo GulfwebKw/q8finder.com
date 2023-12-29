@@ -42,7 +42,7 @@
             var $state = $(
                 '<div class="wwwwwww">' +
                 '<span style="float: right">' + state.text + '</span>' +
-                '<span style="float: left">(' + state.element.dataset.numad + ')</span>' +
+                ( state.element.dataset.numad !== "" ? ('<span style="float: left">(' + state.element.dataset.numad + ')</span>') : '' )  +
                 '</div>'
             );
             return $state;
@@ -60,7 +60,9 @@
         selectedCity = Array.from(e.target.options).filter(option => option.selected).map(option => option.value);
       });
 	" x-ref="selectField"  class="input select_input multiple-select2" multiple  >
-{{--                        <option @click="selectedCityObject = null;">{{__('all')}}</option>--}}
+                        <optgroup>
+                            <option value="-2" data-numad=""  @click="selectedCityObject = null;">جميع المناطق الكويت</option>
+                        </optgroup>
                         <template x-for="city in areas" >
                             <optgroup :label="city.name_{{ app()->getLocale() }}">
                                 <template x-for="cityArea in city.areas">
