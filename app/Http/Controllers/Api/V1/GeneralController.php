@@ -62,12 +62,14 @@ class GeneralController extends ApiBaseController
         $cities=City::withCount(['advertising' => function($query){
             $query->whereNotNull('expire_at')
             ->where('expire_at', '>', date('Y-m-d'))
-            ->whereHas("user")->where("purpose", "!=" , 'required_for_rent');
+            ->whereHas("user");
+//          ->where("purpose", "!=" , 'required_for_rent');
         }])->with(['areas' => function($query){
             $query->withCount(['advertising' => function($query){
                 $query->whereNotNull('expire_at')
                 ->where('expire_at', '>', date('Y-m-d'))
-                ->whereHas("user")->where("purpose", "!=" , 'required_for_rent');
+                ->whereHas("user");
+//                ->where("purpose", "!=" , 'required_for_rent');
             }]);
         }])->orderBy('id','DESC')->get();
         return $this->success("",$cities);
