@@ -6,9 +6,9 @@
             {{--        <p class="text-center advertise-header-time"  x-show="ad.purpose != 'required_for_rent1'" x-text="ad.created_at"></p>--}}
 
             <div class="featured text-white" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>
-            <div
-                @click="share( (ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}}) ,ad.description , ad.share_link.{{ app()->getLocale()  }} );"
-                class="share desk_hide"><i class="fa fa-share text-white"></i></div>
+{{--            <div--}}
+{{--                @click="share( (ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}}) ,ad.description , ad.share_link.{{ app()->getLocale()  }} );"--}}
+{{--                class="share desk_hide"><i class="fa fa-share text-white"></i></div>--}}
             <a :href="ad.share_link.{{ app()->getLocale()  }}">
                 <img x-show="ad.purpose != 'required_for_rent1'"
                     :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'"

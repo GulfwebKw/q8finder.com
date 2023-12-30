@@ -151,8 +151,8 @@
                         <div>
                             <i class="fa fa-eye fa-lg" style="margin-left: 0;"></i> {{$advertising->view_count}}
                         </div>
-                        <div id="shareBtn"  style="cursor: pointer">
-                            <i class="fa fa-share-square-o fa-lg"></i>
+                        <div id="shareBtn1" onclick="navigator.clipboard.writeText('{{url('/ar/advertising/'.$advertising->hash_number.'/details')}}');document.getElementById('copyIcon').classList.remove('fa-link');document.getElementById('copyIcon').classList.add('fa-check');"  style="cursor: pointer">
+                            <i id="copyIcon" class="fa fa-link fa-lg"></i>
                         </div>
                     </div>
                     <hr>
@@ -176,13 +176,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                         </div>
                         <div class="modal-body">
-                        <p>
-                            <div class="row">
-                                <div class="col-3"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-facebook fa-2x"></i></a></div>
-                                <div class="col-3"><a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-twitter fa-2x"></i></a></div>
-                                <div class="col-3"><a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;"><i class="fa fa-pinterest fa-2x"></i></a></div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-3"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-facebook fa-2x"></i></a></div>
+                                    <div class="col-3"><a target="_blank" href="https://twitter.com/intent/tweet?text={{$name}} {{url('/ar/advertising/'.$advertising->hash_number.'/details')}}" style="color:#999999;"><i class="fa fa-twitter fa-2x"></i></a></div>
+                                    <div class="col-3"><a target="_blank" href="https://pinterest.com/pin/create/button/?url={{url('/ar/advertising/'.$advertising->hash_number.'/details')}}&media={{url($advertising->main_image)}}" style="color:#999999;"><i class="fa fa-pinterest fa-2x"></i></a></div>
+                                </div>
                             </div>
-                            </p>
                         </div>
 
                         </div>
