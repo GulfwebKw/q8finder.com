@@ -6,7 +6,8 @@
 .slide-menu-open{color:#092b4c;}
 
 .side-menu-wrapper { /* style menu wrapper */
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: rgba(29,35,47,.95);
     padding:40px 0 0 0;
     position: fixed; /* Fixed position */
