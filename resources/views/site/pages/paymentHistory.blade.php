@@ -27,7 +27,7 @@
         </thead>
         <tbody class="mdc-data-table__content">
             <?php $i = ($payments->currentpage() - 1) * $payments->perpage() + 1;?>
-            @foreach($payments as $payment)
+            @forelse($payments as $payment)
                 <tr class="mdc-data-table__row">
                     <td class="mdc-data-table__cell">{{$i++}}</td>
                     <td class="mdc-data-table__cell">{{ app()->getLocale()==='en'?$payment->title_en:$payment->title_ar }} @if( $payment->count > 1 )
@@ -61,7 +61,15 @@
                         @endif
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="6">
+                        <div class="w-100 alert alert-info">
+                            <h3 class="text-center">{{ __('no_data') }}</h3>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

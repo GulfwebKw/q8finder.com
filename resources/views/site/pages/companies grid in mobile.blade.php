@@ -68,7 +68,7 @@ $side = app()->getLocale() === 'en' ? 'r' : 'l';
             <h1 class="fw-600 mx-auto py-3">{{__('companies_list')}}</h1>
         </div>
         <div class="row md:px-5 justify-content-center col-">
-            @foreach($companies as $company)
+            @forelse($companies as $company)
             <div class="px-1 col-xs-6 col-sm-6 col-md-2 card-mobile-tablet">
                 <div class="card card-subscribe card-buy shadow companies-card rounded  p-0 sm:m{{$side}}-2 mb-3"
                     style="height: max-content">
@@ -158,7 +158,11 @@ $side = app()->getLocale() === 'en' ? 'r' : 'l';
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+                <div class="col-12 alert alert-info">
+                    <h3 class="text-center">{{ __('no_data') }}</h3>
+                </div>
+            @endforelse
         </div>
     </div>
 </main>

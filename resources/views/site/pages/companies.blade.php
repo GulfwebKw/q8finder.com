@@ -97,7 +97,7 @@
                 <h3 class="fw-600 mx-auto py-3">{{__('companies_list')}}</h3>
             </div>
             <div class="row md:px-5 justify-content-center col-">
-                @foreach($companies as $company)
+                @forelse($companies as $company)
                     <div class="card-mobile-tablet col-md-4 col-sm-12 col-xs-12 px-1">
                         <div class="card card-subscribe card-buy shadow companies-card rounded  p-0 sm:m{{$side}}-2 mb-3"
                              style="height: max-content;position: relative; @if($company->is_premium and false ) background-color: wheat; @endif ">
@@ -194,7 +194,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-12 alert alert-info">
+                        <h3 class="text-center">{{ __('no_data') }}</h3>
+                    </div>
+                @endforelse
             </div>
         </div>
     </main>

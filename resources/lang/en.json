@@ -162,6 +162,7 @@
     "date": "Date",
     "throttle": "Too many login attempts. Please try again in :seconds seconds.",
     "surface": "Area",
+    "no_data": "No Data Found",
     "longtermsubscribe": "Long Term Subscribe",
     "subscribetoourpackagenote": "Subscribe our package as per your needs",
     "payasyougo": "Pay As You Go",

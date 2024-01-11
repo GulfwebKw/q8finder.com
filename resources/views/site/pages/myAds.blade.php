@@ -85,7 +85,7 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                 }
 
             </style>
-            @foreach($ads as $ad)
+            @forelse($ads as $ad)
             <tr class="mdc-data-table__row" @if($ad->expire_at) style="background-color:rgba(0,0,0,0.1);" @endif>
                 <td class="mdc-data-table__cell sm:px-2 text-center-important" style="padding-{{$edge}}: 0 !important;min-width: 72px;">
                     <a href="{{route('site.ad.detail', [app()->getLocale(), $ad->hash_number])}}">
@@ -210,7 +210,15 @@ $edge = app()->getLocale() == 'en' ? 'left' : 'right';
                     @endif
                 </td> --}}
             </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3">
+                        <div class="w-100 alert alert-info">
+                            <h3 class="text-center">{{ __('no_data') }}</h3>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
