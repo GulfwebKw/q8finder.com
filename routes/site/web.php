@@ -59,6 +59,8 @@ Route::prefix('')->group(function (){
 Route::group(['middleware'=>['auth']],function (){
     // Route::get('/getPaymentStatus/{payId}','MainController@getPaymentStatus');
     Route::get('/profile','MainController@profile')->name('Main.profile');
+    Route::delete('/deleteUser','UserController@deleteUser')->name('User.deleteUser');
+    Route::view('/deleteUser', 'site.pages.deleteUser')->name('User.deleteUser.page');
     Route::post('/edituser', 'UserController@editUser')->name('User.editUser');
     Route::get('/changepassword', 'MainController@changePassword')->name('Main.changePassword');
     Route::post('/changepassword', 'UserController@changePassword')->name('User.changePassword');

@@ -311,5 +311,8 @@
     "renew": "Repost this ad",
     "buy_premium" : "Arranging to top",
     "send_email_to" : "Send code to :email",
+    "remove_account" : "Delete account",
+    "close" : "Close",
+    "remove_account_description" : "Warning! Are you sure to delete your account? If deleted, it is not possible to recover your account!",
     "whatsapp_company_text": "Hello, I would like to know more details regarding following ad in MR-AQAR App %0a"
 }

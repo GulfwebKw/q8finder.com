@@ -68,6 +68,11 @@
                                     <li><a href="{{ route('Message.create', ['locale' => app()->getLocale()]) }}"><i class="fa fa-envelope-o fa-lg"></i>{{__('contact_title')}}</a></li>
                                     @if(auth()->check())
                                         <li>
+                                            <a href="{{ route('User.deleteUser.page', ['locale' => app()->getLocale()]) }}" style="color: red !important;">
+                                                <i class="fa fa-warning fa-lg"></i>{{__('remove_account')}}
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="fa fa-sign-out fa-lg"></i> {{__('Logout')}}
                                             </a>

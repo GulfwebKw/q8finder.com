@@ -179,6 +179,15 @@ class UserController extends Controller
         }
     }
 
+    public function deleteUser()
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        auth()->logout();
+        $user->delete();
+        return redirect()->to(app()->getLocale());
+    }
+
     public function changePassword(Request $request)
     {
         $user = auth()->user();
