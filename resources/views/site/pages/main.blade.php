@@ -29,6 +29,26 @@
         .select2-selection {
             min-height: 47px !important;
         }
+
+        .listAdvertise .newAdvertiseInMobile {
+            display: none;
+        }
+        .listAdvertise .newFeatured {
+            top: 5px !important;
+            right: 5px !important;
+            font-size: 14px;
+            padding: 2px 10px;
+        }
+        .newFeatured:before {
+            height: 0;
+            width: 0;
+            bottom: -8.5px;
+            right: 0.1px;
+            border-top: 9px solid #812839;
+            border-right: 9px solid transparent;
+            content: "";
+            position: absolute;
+        }
         @media (max-width: 992px) {
             body {
                 background-color: #111720 !important;
@@ -43,6 +63,10 @@
                 /*margin: 0 55px 10px 0 !important;*/
                 margin: 0 55px 10px 55px !important;
                 padding: 0;
+            }
+            .listAdvertise .newAdvertiseInMobile {
+                display: block;
+                background-color: #ffffff;
             }
             .listAdvertise .advertise .desk_hide {
                 display: block !important;
@@ -205,7 +229,7 @@
 
         <section class="listAdvertise">
             <div class="container">
-                <div class="row">
+                <div class="row1">
                     @include('site.sections.card')
                 </div>
             </div>

@@ -1,3 +1,5 @@
+<div class="mob_hide">
+    <div class="row">
 <template x-for="ad in advertise">
     <div class="col-101 col-lg-3 mx-auto advertise">
         <div class=" advertise-bg-white mb-3">
@@ -72,3 +74,46 @@
         </div>
     </div>
 </template>
+</div></div>
+<div class="desk_hide">
+    <div class="row">
+    <template x-for="ad in advertise">
+        <div class="col-11 col-lg-3 desk_hide mb-3 mx-auto newAdvertiseInMobile py-3 rounded text-body" >
+            <a :href="ad.share_link.{{ app()->getLocale()  }}" class=" text-body">
+                <div class="d-flex" style="column-gap: 20px;">
+                    <div style="max-width: 30%;">
+                        <div class="featured newFeatured text-white" x-show="ad.advertising_type === 'premium'">{{ __('premium_short') }}</div>
+
+                        <img x-show="ad.purpose != 'required_for_rent1'"
+                             :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'"
+                             alt="ad" class="ad_img rounded" style="height: auto;"
+                             onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';">
+                    </div>
+                    <div class="flex">
+                        <div class="mb-3">
+                            <strong
+                                x-text="ad.purpose !== 'service' ? purpose_lang[ad.purpose] + ' '+ ad.venue.title_{{app()->getLocale()}}+ ' {{__('in')}} '+ ad.area.name_{{app()->getLocale()}} : ad.title_{{app()->getLocale()}} ">
+                            </strong>
+                        </div>
+                        <div class="d-flex" style="column-gap: 20px; font-size: 11px;">
+                            <div class="flex">
+                                <span>⌚</span> <span
+                                    x-text="ad.created_at"></span>
+                            </div>
+                            <div class="flex">
+                                <span>👁️</span> <span
+                                    x-text="ad.view_count"></span>
+                            </div>
+                            <div class="flex f-13">
+                                <span x-text="ad.price"></span><span> {{ __('kd_title') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-13" :dir="isArabic(ad.description) ? 'rtl' : 'ltr'"
+                     x-text="truncate(ad.description, 80)" style="color: gray;text-align: justify;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2; -webkit-box-orient: vertical;"></div>
+            </a>
+        </div>
+    </template>
+    </div>
+</div>
