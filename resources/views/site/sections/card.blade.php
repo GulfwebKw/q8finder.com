@@ -86,7 +86,7 @@
 
                         <img x-show="ad.purpose != 'required_for_rent1'"
                              :src="ad.main_image ? ad.main_image : '{{route('image.noimage', '')}}'"
-                             alt="ad" class="ad_img rounded" style="height: auto;"
+                             alt="ad" class="ad_img rounded" style="width: 80px;height: 60px;"
                              onerror="this.onerror=null;this.src='{{route('image.noimage', '')}}';">
                     </div>
                     <div class="flex">
